@@ -93,3 +93,8 @@ print(Fore.GREEN + "--- Merging completed. Merged index file created at: index.o
 print(Fore.GREEN + "Creating additional index files with alternative mirror links..." + Style.RESET_ALL)
 subprocess.run(["python3", "gen_mirrors.py"])
 print(Fore.GREEN + "--- Additional index files created ---" + Style.RESET_ALL)
+
+# Sort index files by name and add IDs
+print(Fore.GREEN + "Sorting index files by name and adding IDs..." + Style.RESET_ALL)
+subprocess.run(["python3", "sort.py"])
+print(Fore.GREEN + "--- Sorting completed ---" + Style.RESET_ALL)
