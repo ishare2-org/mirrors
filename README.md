@@ -11,6 +11,7 @@ This repository contains mirrors of the repositories of the [LabHub](https://lab
 ```json
 {
     "QEMU": [{
+        "id": imageId,
         "format": imageFormat,
         "name": imageName,
         "download_links": [
@@ -23,6 +24,7 @@ This repository contains mirrors of the repositories of the [LabHub](https://lab
         "size": imageSize
     }],
     "IOL": [{
+        "id": imageId,
         "format": imageFormat,
         "name": imageName,
         "download_links": [
@@ -35,6 +37,7 @@ This repository contains mirrors of the repositories of the [LabHub](https://lab
         "size": imageSize
     }],
     "DYNAMIPS": [{
+        "id": imageId,
         "format": imageFormat,
         "name": imageName,
         "download_links": [
@@ -57,6 +60,7 @@ Types: `qemu`, `iol`, `dynamips`
 
 ```json
 {
+        "id": imageId,
         "format": imageFormat,
         "name": imageName,
         "download_links": [
