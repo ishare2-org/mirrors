@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "format": ".image",
         "name": "c1710-[1]-adventerprisek9-mz.124-25d.image",
         "download_links": [
@@ -10,6 +11,7 @@
         "size": "54.8 MiB"
     },
     {
+        "id": 2,
         "format": ".image",
         "name": "c1710-bk9no3r2sy-mz.124-23.image",
         "download_links": [
@@ -20,6 +22,7 @@
         "size": "35.8 MiB"
     },
     {
+        "id": 3,
         "format": ".image",
         "name": "c1760-[1]-adventerprisek9-mz.124-25d.image",
         "download_links": [
@@ -30,6 +33,7 @@
         "size": "54.8 MiB"
     },
     {
+        "id": 4,
         "format": ".image",
         "name": "c2600-[1]-adventerprisek9_ivs-mz.124-25b.image",
         "download_links": [
@@ -40,6 +44,7 @@
         "size": "71.1 MiB"
     },
     {
+        "id": 5,
         "format": ".image",
         "name": "c2600-[2]-advipservicesk9-mz.124-25b.image",
         "download_links": [
@@ -50,6 +55,7 @@
         "size": "66.8 MiB"
     },
     {
+        "id": 6,
         "format": ".image",
         "name": "c2600-[3]-adventerprisek9-mz.124-25d.image",
         "download_links": [
@@ -60,6 +66,7 @@
         "size": "70.5 MiB"
     },
     {
+        "id": 7,
         "format": ".image",
         "name": "c2691-[1]-adventerprisek9_ivs-mz.124-25d.image",
         "download_links": [
@@ -70,6 +77,7 @@
         "size": "77.5 MiB"
     },
     {
+        "id": 8,
         "format": ".image",
         "name": "c2691-[2]advsecurityk9-mz.124-25d.image",
         "download_links": [
@@ -80,6 +88,7 @@
         "size": "42.7 MiB"
     },
     {
+        "id": 9,
         "format": ".image",
         "name": "c3640-[1]-a3js-mz.124-25d.image",
         "download_links": [
@@ -90,6 +99,7 @@
         "size": "62.6 MiB"
     },
     {
+        "id": 10,
         "format": ".image",
         "name": "c3640-[2]-telco-mz.124-25d.image",
         "download_links": [
@@ -100,6 +110,7 @@
         "size": "31.8 MiB"
     },
     {
+        "id": 11,
         "format": ".image",
         "name": "c3660-[1]-jk9s2-mz.124-25d.image",
         "download_links": [
@@ -110,6 +121,7 @@
         "size": "72.5 MiB"
     },
     {
+        "id": 12,
         "format": ".image",
         "name": "c3660-[2]-a3js-mz.124-25d.image",
         "download_links": [
@@ -120,6 +132,7 @@
         "size": "70.1 MiB"
     },
     {
+        "id": 13,
         "format": ".image",
         "name": "c3660-[3]-is-mz.124-25d.image",
         "download_links": [
@@ -130,6 +143,7 @@
         "size": "64.4 MiB"
     },
     {
+        "id": 14,
         "format": ".image",
         "name": "c3725-[1]-adventerprisek9-mz.124-25d.image",
         "download_links": [
@@ -140,6 +154,7 @@
         "size": "78.1 MiB"
     },
     {
+        "id": 15,
         "format": ".image",
         "name": "c3725-[2]-advipservicesk9-mz.124-25d.image",
         "download_links": [
@@ -150,6 +165,7 @@
         "size": "74.6 MiB"
     },
     {
+        "id": 16,
         "format": ".image",
         "name": "c3725-[3]-advsecurityk9-mz.124-25d.image",
         "download_links": [
@@ -160,6 +176,7 @@
         "size": "43.9 MiB"
     },
     {
+        "id": 17,
         "format": ".image",
         "name": "c3725-adventerprisek9-mz.124-15.T14.image",
         "download_links": [
@@ -170,6 +187,7 @@
         "size": "93.3 MiB"
     },
     {
+        "id": 18,
         "format": ".image",
         "name": "c3745-[1]-adventerprisek9-mz.124-25d.image",
         "download_links": [
@@ -180,6 +198,7 @@
         "size": "78.3 MiB"
     },
     {
+        "id": 19,
         "format": ".image",
         "name": "c3745-[2]-advipservicesk9-mz.124-25d.image",
         "download_links": [
@@ -190,6 +209,7 @@
         "size": "74.8 MiB"
     },
     {
+        "id": 20,
         "format": ".image",
         "name": "c3745-[3]-advsecurityk9-mz.124-25d.image",
         "download_links": [
@@ -200,6 +220,7 @@
         "size": "44.1 MiB"
     },
     {
+        "id": 21,
         "format": ".image",
         "name": "c7200-[10]-adventerprisek9-mz.151-4.M2.image",
         "download_links": [
@@ -210,6 +231,7 @@
         "size": "112.5 MiB"
     },
     {
+        "id": 22,
         "format": ".image",
         "name": "c7200-[11]-advsecurityk9-mz.150-1.M9.image",
         "download_links": [
@@ -220,6 +242,7 @@
         "size": "92.0 MiB"
     },
     {
+        "id": 23,
         "format": ".image",
         "name": "c7200-[1]-a3jk9s-mz.124-25g.image",
         "download_links": [
@@ -230,6 +253,7 @@
         "size": "68.2 MiB"
     },
     {
+        "id": 24,
         "format": ".image",
         "name": "c7200-[2]-adventerprisek9-mz.152-4.M7.image",
         "download_links": [
@@ -240,6 +264,7 @@
         "size": "122.5 MiB"
     },
     {
+        "id": 25,
         "format": ".image",
         "name": "c7200-[3]-advipservicesk9-mz.152-4.S2.image",
         "download_links": [
@@ -250,6 +275,7 @@
         "size": "83.5 MiB"
     },
     {
+        "id": 26,
         "format": ".image",
         "name": "c7200-adventerprisek9-mz.152-4.S2.image",
         "download_links": [
@@ -260,6 +286,7 @@
         "size": "89.0 MiB"
     },
     {
+        "id": 27,
         "format": ".image",
         "name": "c7200-adventerprisek9-mz.152-4.S6.image",
         "download_links": [
