@@ -41,7 +41,8 @@ def generate_file_entry(filename, relative_path, root):
         ("download_links", [link]),
         ("download_path", download_path),
         ("type", image_type),
-        ("size", human_readable_size)  # add size to the entry
+        ("size", size),  # add size to the entry
+        ("human_readable_size", human_readable_size)  # add human-readable size to the entry
     ])
 
     return entry, link
@@ -72,7 +73,8 @@ def generate_index(directory):
                 "download_links": links,
                 "download_path": download_path + folder_name,
                 "type": image_type,
-                "size": human_readable_total_size_qcow2_files  # add total size of .qcow2 files to the entry
+                "size": total_size_qcow2_files,  # add total size of .qcow2 files to the entry
+                "human_readable_size": human_readable_total_size_qcow2_files  # add human-readable total size of .qcow2 files to the entry
             }
 
             index_data.append(entry)

@@ -42,7 +42,8 @@ def generate_index(directory):
                 "download_links": [download_link],
                 "download_path": download_path,
                 "type": image_type,
-                "size": human_readable_size  # add size to the entry
+                "size": size,  # add size to the entry
+                "human_readable_size": human_readable_size  # add human-readable size to the entry
             }
             index_data.append(entry)
 

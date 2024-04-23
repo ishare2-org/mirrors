@@ -10,6 +10,16 @@ init()
 # Base directory
 base_dir = "../UNETLAB/"
 
+# Copy index.py to corresponding directories from ./scripts to UNETLAB I and UNETLAB II
+print(Fore.GREEN + "- Copying index.py to UNETLAB I and UNETLAB II..." + Style.RESET_ALL)
+# scripts/dynamips/index.py, scripts/iol/bin/index.py, scripts/qemu/index.py
+shutil.copyfile("scripts/dynamips/index.py", f"{base_dir}UNETLAB I/addons/dynamips/index.py")
+# shutil.copyfile("scripts/dynamips/index.py", f"{base_dir}UNETLAB II/addons/dynamips/index.py") # Dynamips is not supported in UNETLAB II
+shutil.copyfile("scripts/iol/index.py", f"{base_dir}UNETLAB I/addons/iol/bin/index.py")
+shutil.copyfile("scripts/iol/index.py", f"{base_dir}UNETLAB II/addons/iol/bin/index.py")
+shutil.copyfile("scripts/qemu/index.py", f"{base_dir}UNETLAB I/addons/qemu/index.py")
+shutil.copyfile("scripts/qemu/index.py", f"{base_dir}UNETLAB II/addons/qemu/index.py")
+
 # Run indexing scripts
 print(Fore.GREEN + "- Indexing UNETLAB I IOL images..." + Style.RESET_ALL)
 subprocess.run(["python3", f"{base_dir}UNETLAB I/addons/iol/bin/index.py"])
