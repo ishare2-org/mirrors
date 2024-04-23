@@ -8,7 +8,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "105.8 MiB"
+        "size": 110978612,
+        "human_readable_size": "105.8 MiB"
     },
     {
         "id": 2,
@@ -19,7 +20,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "108.3 MiB"
+        "size": 113535540,
+        "human_readable_size": "108.3 MiB"
     },
     {
         "id": 3,
@@ -30,7 +32,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "108.3 MiB"
+        "size": 113535540,
+        "human_readable_size": "108.3 MiB"
     },
     {
         "id": 4,
@@ -41,7 +44,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "152.0 MiB"
+        "size": 159350476,
+        "human_readable_size": "152.0 MiB"
     },
     {
         "id": 5,
@@ -52,7 +56,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "28.6 MiB"
+        "size": 29968428,
+        "human_readable_size": "28.6 MiB"
     },
     {
         "id": 6,
@@ -63,7 +68,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "18.7 MiB"
+        "size": 19643612,
+        "human_readable_size": "18.7 MiB"
     },
     {
         "id": 7,
@@ -74,7 +80,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "40.5 MiB"
+        "size": 42488124,
+        "human_readable_size": "40.5 MiB"
     },
     {
         "id": 8,
@@ -85,7 +92,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "35.1 MiB"
+        "size": 36823844,
+        "human_readable_size": "35.1 MiB"
     },
     {
         "id": 9,
@@ -96,7 +104,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "120.4 MiB"
+        "size": 126226692,
+        "human_readable_size": "120.4 MiB"
     },
     {
         "id": 10,
@@ -107,7 +116,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "120.4 MiB"
+        "size": 126249700,
+        "human_readable_size": "120.4 MiB"
     },
     {
         "id": 11,
@@ -118,7 +128,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "176.2 MiB"
+        "size": 184759244,
+        "human_readable_size": "176.2 MiB"
     },
     {
         "id": 12,
@@ -129,7 +140,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "120.4 MiB"
+        "size": 126226692,
+        "human_readable_size": "120.4 MiB"
     },
     {
         "id": 13,
@@ -140,7 +152,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "176.2 MiB"
+        "size": 184759244,
+        "human_readable_size": "176.2 MiB"
     },
     {
         "id": 14,
@@ -151,7 +164,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "176.2 MiB"
+        "size": 184759244,
+        "human_readable_size": "176.2 MiB"
     },
     {
         "id": 15,
@@ -162,7 +176,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "145.6 MiB"
+        "size": 152677848,
+        "human_readable_size": "145.6 MiB"
     },
     {
         "id": 16,
@@ -173,7 +188,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "120.4 MiB"
+        "size": 126226692,
+        "human_readable_size": "120.4 MiB"
     },
     {
         "id": 17,
@@ -184,7 +200,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "120.4 MiB"
+        "size": 126249700,
+        "human_readable_size": "120.4 MiB"
     },
     {
         "id": 18,
@@ -195,7 +212,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "120.4 MiB"
+        "size": 126249700,
+        "human_readable_size": "120.4 MiB"
     },
     {
         "id": 19,
@@ -206,7 +224,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "100.2 MiB"
+        "size": 105087740,
+        "human_readable_size": "100.2 MiB"
     },
     {
         "id": 20,
@@ -217,7 +236,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "100.8 MiB"
+        "size": 105674845,
+        "human_readable_size": "100.8 MiB"
     },
     {
         "id": 21,
@@ -228,7 +248,8 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "58.9 MiB"
+        "size": 61723544,
+        "human_readable_size": "58.9 MiB"
     },
     {
         "id": 22,
@@ -239,6 +260,7 @@
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
-        "size": "152.0 MiB"
+        "size": 159350476,
+        "human_readable_size": "152.0 MiB"
     }
 ]

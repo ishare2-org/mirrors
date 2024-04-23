@@ -8,7 +8,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "54.8 MiB"
+        "size": 57475320,
+        "human_readable_size": "54.8 MiB"
     },
     {
         "id": 2,
@@ -19,7 +20,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "35.8 MiB"
+        "size": 37540240,
+        "human_readable_size": "35.8 MiB"
     },
     {
         "id": 3,
@@ -30,7 +32,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "54.8 MiB"
+        "size": 57475320,
+        "human_readable_size": "54.8 MiB"
     },
     {
         "id": 4,
@@ -41,7 +44,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "71.1 MiB"
+        "size": 74547064,
+        "human_readable_size": "71.1 MiB"
     },
     {
         "id": 5,
@@ -52,7 +56,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "66.8 MiB"
+        "size": 70082136,
+        "human_readable_size": "66.8 MiB"
     },
     {
         "id": 6,
@@ -63,7 +68,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "70.5 MiB"
+        "size": 73913048,
+        "human_readable_size": "70.5 MiB"
     },
     {
         "id": 7,
@@ -74,7 +80,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "77.5 MiB"
+        "size": 81300900,
+        "human_readable_size": "77.5 MiB"
     },
     {
         "id": 8,
@@ -85,7 +92,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "42.7 MiB"
+        "size": 44738716,
+        "human_readable_size": "42.7 MiB"
     },
     {
         "id": 9,
@@ -96,7 +104,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "62.6 MiB"
+        "size": 65688632,
+        "human_readable_size": "62.6 MiB"
     },
     {
         "id": 10,
@@ -107,7 +116,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "31.8 MiB"
+        "size": 33395020,
+        "human_readable_size": "31.8 MiB"
     },
     {
         "id": 11,
@@ -118,7 +128,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "72.5 MiB"
+        "size": 76049252,
+        "human_readable_size": "72.5 MiB"
     },
     {
         "id": 12,
@@ -129,7 +140,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "70.1 MiB"
+        "size": 73543952,
+        "human_readable_size": "70.1 MiB"
     },
     {
         "id": 13,
@@ -140,7 +152,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "64.4 MiB"
+        "size": 67528652,
+        "human_readable_size": "64.4 MiB"
     },
     {
         "id": 14,
@@ -151,7 +164,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "78.1 MiB"
+        "size": 81841724,
+        "human_readable_size": "78.1 MiB"
     },
     {
         "id": 15,
@@ -162,7 +176,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "74.6 MiB"
+        "size": 78214136,
+        "human_readable_size": "74.6 MiB"
     },
     {
         "id": 16,
@@ -173,7 +188,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "43.9 MiB"
+        "size": 46031920,
+        "human_readable_size": "43.9 MiB"
     },
     {
         "id": 17,
@@ -184,7 +200,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "93.3 MiB"
+        "size": 97859480,
+        "human_readable_size": "93.3 MiB"
     },
     {
         "id": 18,
@@ -195,7 +212,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "78.3 MiB"
+        "size": 82053028,
+        "human_readable_size": "78.3 MiB"
     },
     {
         "id": 19,
@@ -206,7 +224,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "74.8 MiB"
+        "size": 78392636,
+        "human_readable_size": "74.8 MiB"
     },
     {
         "id": 20,
@@ -217,7 +236,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "44.1 MiB"
+        "size": 46234344,
+        "human_readable_size": "44.1 MiB"
     },
     {
         "id": 21,
@@ -228,7 +248,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "112.5 MiB"
+        "size": 117918192,
+        "human_readable_size": "112.5 MiB"
     },
     {
         "id": 22,
@@ -239,7 +260,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "92.0 MiB"
+        "size": 96496256,
+        "human_readable_size": "92.0 MiB"
     },
     {
         "id": 23,
@@ -250,7 +272,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "68.2 MiB"
+        "size": 71528984,
+        "human_readable_size": "68.2 MiB"
     },
     {
         "id": 24,
@@ -261,7 +284,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "122.5 MiB"
+        "size": 128474856,
+        "human_readable_size": "122.5 MiB"
     },
     {
         "id": 25,
@@ -272,7 +296,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "83.5 MiB"
+        "size": 87521544,
+        "human_readable_size": "83.5 MiB"
     },
     {
         "id": 26,
@@ -283,7 +308,8 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "89.0 MiB"
+        "size": 93329832,
+        "human_readable_size": "89.0 MiB"
     },
     {
         "id": 27,
@@ -294,6 +320,7 @@
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
-        "size": "89.3 MiB"
+        "size": 93586040,
+        "human_readable_size": "89.3 MiB"
     }
 ]
