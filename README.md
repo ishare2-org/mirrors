@@ -18,7 +18,7 @@ UNETLAB/
 ├── UNETLAB I
 │   └── addons
 │       ├── dynamips
-|       │    └── index.py
+│       │    └── index.py
 │       ├── iol
 │       │   └── index.py
 │       └── qemu
