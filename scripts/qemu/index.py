@@ -11,7 +11,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 image_type = os.path.abspath(script_dir).split('/')[-1]
 hostname = "labhub.eu.org"
 parent_dir = os.path.abspath(os.path.join(script_dir, os.pardir, os.pardir)).split('/')[-1]
-remote_path = f"/api/raw/?path=/{parent_dir}/addons/{image_type}"
+remote_path = f"/api/raw/?path=/addons/{image_type}"
 download_path = f"/opt/unetlab/addons/{image_type}/"
 
 def sizeof_fmt(num, suffix='B'):
@@ -105,7 +105,7 @@ def print_summary(index_data):
         print(f"Number of {format} entries: {num_entries_by_format[format]}")
 
 if __name__ == "__main__":
-    output_file_path = os.path.join(script_dir, "index_qemu.json")  # Output JSON file path
+    output_file_path = os.path.join(script_dir, "index.main.qemu.json")  # Output JSON file path
 
     index_data = generate_index(script_dir)
     save_to_json(index_data, output_file_path)

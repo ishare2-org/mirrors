@@ -11,7 +11,7 @@ image_type = os.path.abspath(os.path.join(script_dir)).split('/')[-1]
 download_path = f"/opt/unetlab/addons/{image_type}/"
 hostname = "labhub.eu.org"
 parent_dir = os.path.abspath(os.path.join(script_dir, os.pardir, os.pardir)).split('/')[-1]
-remote_path = f"/api/raw/?path=/{parent_dir}/addons/{image_type}"
+remote_path = f"/api/raw/?path=/addons/{image_type}"
 
 def sizeof_fmt(num, suffix='B'):
     for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
@@ -53,7 +53,7 @@ def save_to_json(index_data, output_file):
         json.dump(index_data, json_file, indent=4)
 
 if __name__ == "__main__":
-    output_file_path = os.path.join(script_dir, "index_dynamips.json")  # Output JSON file path
+    output_file_path = os.path.join(script_dir, "index.main.dynamips.json")  # Output JSON file path
 
     index_data = generate_index(".")
     save_to_json(index_data, output_file_path)

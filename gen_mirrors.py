@@ -1,17 +1,14 @@
 import json
 from colorama import Fore, Style, init
 
-STRING_TO_REPLACE = "labhub.eu.org/api/raw/?path=/UNETLAB%20I/"
+STRING_TO_REPLACE = "labhub.eu.org/api/raw/?path=/"
 STRING_TO_REPLACE_WITH = "drive.labhub.eu.org/0:/"
-STRING_TO_REPLACE_2 = "labhub.eu.org/api/raw/?path=/UNETLAB%20II/"
-STRING_TO_REPLACE_WITH_2 = "drive.labhub.eu.org/1:/"
 
 INDEXES = ["index.od.bin.json", "index.od.qemu.json", "index.od.dynamips.json", "index.od.json"]
 
 # Function to replace strings in the links
 def replace_strings(link):
     link = link.replace(STRING_TO_REPLACE, STRING_TO_REPLACE_WITH)
-    link = link.replace(STRING_TO_REPLACE_2, STRING_TO_REPLACE_WITH_2)
     return link
 
 # Iterate through the INDEXES

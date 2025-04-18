@@ -12,7 +12,7 @@ image_type = os.path.abspath(os.path.join(script_dir, os.pardir)).split('/')[-1]
 hostname = "labhub.eu.org"
 parent_dir = os.path.abspath(os.path.join(script_dir)).split('/')[-1]
 unet_dir = os.path.abspath(os.path.join(script_dir, os.pardir, os.pardir, os.pardir)).split('/')[-1]
-remote_path = f"/api/raw/?path=/{unet_dir}/addons/{image_type}/{parent_dir}"
+remote_path = f"/api/raw/?path=/addons/{image_type}/{parent_dir}"
 
 def sizeof_fmt(num, suffix='B'):
     for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
@@ -54,7 +54,7 @@ def save_to_json(index_data, output_file):
         json.dump(index_data, json_file, indent=4)
 
 if __name__ == "__main__":
-    output_file_path = os.path.join(script_dir, "index_bin.json")  # Output JSON file path
+    output_file_path = os.path.join(script_dir, "index.main.bin.json")  # Output JSON file path
 
     index_data = generate_index(script_dir)
     save_to_json(index_data, output_file_path)
