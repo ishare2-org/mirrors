@@ -4,7 +4,7 @@
         "format": ".bin",
         "name": "L2-ADVENTERPRISEK9-M-15.2-20150703.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/L2-ADVENTERPRISEK9-M-15.2-20150703.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/L2-ADVENTERPRISEK9-M-15.2-20150703.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
@@ -16,7 +16,7 @@
         "format": ".bin",
         "name": "L2-ADVENTERPRISEK9-M-15.2-IRON-20151103.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/L2-ADVENTERPRISEK9-M-15.2-IRON-20151103.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/L2-ADVENTERPRISEK9-M-15.2-IRON-20151103.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
@@ -26,21 +26,9 @@
     {
         "id": 3,
         "format": ".bin",
-        "name": "L2-Adventerprisek9-ms.nov3_2015_high_iron.bin",
-        "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/L2-Adventerprisek9-ms.nov3_2015_high_iron.bin"
-        ],
-        "download_path": "/opt/unetlab/addons/iol/bin/",
-        "type": "iol",
-        "size": 113535540,
-        "human_readable_size": "108.3 MiB"
-    },
-    {
-        "id": 4,
-        "format": ".bin",
         "name": "L3-ADVENTERPRISEK9-M-15.4-2T.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/L3-ADVENTERPRISEK9-M-15.4-2T.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/L3-ADVENTERPRISEK9-M-15.4-2T.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
@@ -48,11 +36,11 @@
         "human_readable_size": "152.0 MiB"
     },
     {
-        "id": 5,
+        "id": 4,
         "format": ".bin",
         "name": "c2600-adventerprisek9-mz.124-25d.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/c2600-adventerprisek9-mz.124-25d.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/c2600-adventerprisek9-mz.124-25d.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
@@ -60,11 +48,11 @@
         "human_readable_size": "28.6 MiB"
     },
     {
-        "id": 6,
+        "id": 5,
         "format": ".bin",
         "name": "c2600-advsecurityk9-mz.124-15.t14.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/c2600-advsecurityk9-mz.124-15.t14.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/c2600-advsecurityk9-mz.124-15.t14.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
@@ -72,11 +60,11 @@
         "human_readable_size": "18.7 MiB"
     },
     {
-        "id": 7,
+        "id": 6,
         "format": ".bin",
         "name": "c3660-a3jk9s-mz.124-15.T14.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/c3660-a3jk9s-mz.124-15.T14.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/c3660-a3jk9s-mz.124-15.T14.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
@@ -84,11 +72,11 @@
         "human_readable_size": "40.5 MiB"
     },
     {
-        "id": 8,
+        "id": 7,
         "format": ".bin",
         "name": "c3660-a3jk9s-mz.124-25d.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/c3660-a3jk9s-mz.124-25d.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/c3660-a3jk9s-mz.124-25d.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
@@ -96,11 +84,11 @@
         "human_readable_size": "35.1 MiB"
     },
     {
-        "id": 9,
+        "id": 8,
         "format": ".bin",
         "name": "i86bi_Linux-L2-AdvEnterpriseK9-M_152_May_2018.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/i86bi_Linux-L2-AdvEnterpriseK9-M_152_May_2018.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/i86bi_Linux-L2-AdvEnterpriseK9-M_152_May_2018.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
@@ -108,11 +96,11 @@
         "human_readable_size": "120.4 MiB"
     },
     {
-        "id": 10,
+        "id": 9,
         "format": ".bin",
         "name": "i86bi_Linux-L2-Adventerprisek9-ms.SSA.high_iron_20190423.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/i86bi_Linux-L2-Adventerprisek9-ms.SSA.high_iron_20190423.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/i86bi_Linux-L2-Adventerprisek9-ms.SSA.high_iron_20190423.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
@@ -120,11 +108,11 @@
         "human_readable_size": "120.4 MiB"
     },
     {
-        "id": 11,
+        "id": 10,
         "format": ".bin",
         "name": "i86bi_Linux-L3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/i86bi_Linux-L3-AdvEnterpriseK9-M2_157_3_May_2018.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/i86bi_Linux-L3-AdvEnterpriseK9-M2_157_3_May_2018.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
@@ -132,47 +120,11 @@
         "human_readable_size": "176.2 MiB"
     },
     {
-        "id": 12,
-        "format": ".bin",
-        "name": "i86bi_LinuxL2-AdvEnterpriseK9-M_152_May_2018.bin",
-        "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20II/addons/iol/bin/i86bi_LinuxL2-AdvEnterpriseK9-M_152_May_2018.bin"
-        ],
-        "download_path": "/opt/unetlab/addons/iol/bin/",
-        "type": "iol",
-        "size": 126226692,
-        "human_readable_size": "120.4 MiB"
-    },
-    {
-        "id": 13,
-        "format": ".bin",
-        "name": "i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
-        "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin"
-        ],
-        "download_path": "/opt/unetlab/addons/iol/bin/",
-        "type": "iol",
-        "size": 184759244,
-        "human_readable_size": "176.2 MiB"
-    },
-    {
-        "id": 14,
-        "format": ".bin",
-        "name": "i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin",
-        "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20II/addons/iol/bin/i86bi_LinuxL3-AdvEnterpriseK9-M2_157_3_May_2018.bin"
-        ],
-        "download_path": "/opt/unetlab/addons/iol/bin/",
-        "type": "iol",
-        "size": 184759244,
-        "human_readable_size": "176.2 MiB"
-    },
-    {
-        "id": 15,
+        "id": 11,
         "format": ".bin",
         "name": "i86bi_linux-adventerprisek9-ms.154-1.T_AntiGNS3.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/i86bi_linux-adventerprisek9-ms.154-1.T_AntiGNS3.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/i86bi_linux-adventerprisek9-ms.154-1.T_AntiGNS3.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
@@ -180,47 +132,11 @@
         "human_readable_size": "145.6 MiB"
     },
     {
-        "id": 16,
-        "format": ".bin",
-        "name": "i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20180510.bin",
-        "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20180510.bin"
-        ],
-        "download_path": "/opt/unetlab/addons/iol/bin/",
-        "type": "iol",
-        "size": 126226692,
-        "human_readable_size": "120.4 MiB"
-    },
-    {
-        "id": 17,
-        "format": ".bin",
-        "name": "i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin",
-        "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin"
-        ],
-        "download_path": "/opt/unetlab/addons/iol/bin/",
-        "type": "iol",
-        "size": 126249700,
-        "human_readable_size": "120.4 MiB"
-    },
-    {
-        "id": 18,
-        "format": ".bin",
-        "name": "i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin",
-        "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20II/addons/iol/bin/i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin"
-        ],
-        "download_path": "/opt/unetlab/addons/iol/bin/",
-        "type": "iol",
-        "size": 126249700,
-        "human_readable_size": "120.4 MiB"
-    },
-    {
-        "id": 19,
+        "id": 12,
         "format": ".bin",
         "name": "i86bi_linux_l2-advipservicesk9-ms.high_iron_20170202.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/i86bi_linux_l2-advipservicesk9-ms.high_iron_20170202.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/i86bi_linux_l2-advipservicesk9-ms.high_iron_20170202.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
@@ -228,11 +144,11 @@
         "human_readable_size": "100.2 MiB"
     },
     {
-        "id": 20,
+        "id": 13,
         "format": ".bin",
         "name": "i86bi_linux_l2-ipbasek9-ms.high_iron_aug9_2017b.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/i86bi_linux_l2-ipbasek9-ms.high_iron_aug9_2017b.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/i86bi_linux_l2-ipbasek9-ms.high_iron_aug9_2017b.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
@@ -240,27 +156,15 @@
         "human_readable_size": "100.8 MiB"
     },
     {
-        "id": 21,
+        "id": 14,
         "format": ".bin",
         "name": "i86bi_linux_l2-ipbasek9-ms.may8-2013-team_track.bin",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/i86bi_linux_l2-ipbasek9-ms.may8-2013-team_track.bin"
+            "https://drive.labhub.eu.org/0:/addons/iol/bin/i86bi_linux_l2-ipbasek9-ms.may8-2013-team_track.bin"
         ],
         "download_path": "/opt/unetlab/addons/iol/bin/",
         "type": "iol",
         "size": 61723544,
         "human_readable_size": "58.9 MiB"
-    },
-    {
-        "id": 22,
-        "format": ".bin",
-        "name": "i86bi_linux_l3-L3-ADVENTERPRISEK9-M-15.4-2T.bin",
-        "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/iol/bin/i86bi_linux_l3-L3-ADVENTERPRISEK9-M-15.4-2T.bin"
-        ],
-        "download_path": "/opt/unetlab/addons/iol/bin/",
-        "type": "iol",
-        "size": 159350476,
-        "human_readable_size": "152.0 MiB"
     }
 ]

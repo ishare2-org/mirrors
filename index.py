@@ -12,11 +12,13 @@ base_dir = "./lh-gd/"
 
 # Copy index.py to corresponding directories from ./scripts to UNETLAB I and UNETLAB II
 print(Fore.GREEN + "- Copying index.py to images directories..." + Style.RESET_ALL)
-# scripts/dynamips/index.py, scripts/iol/bin/index.py, scripts/qemu/index.py
+print(Fore.GREEN + f"Copying index.py to {base_dir}/addons/dynamips/index.py" + Style.RESET_ALL)
 shutil.copyfile("scripts/dynamips/index.py", f"{base_dir}/addons/dynamips/index.py")
-# shutil.copyfile("scripts/dynamips/index.py", f"{base_dir}UNETLAB II/addons/dynamips/index.py") # Dynamips is not supported in UNETLAB II
+print(Fore.GREEN + f"Copying index.py to {base_dir}/addons/iol/bin/index.py" + Style.RESET_ALL)
 shutil.copyfile("scripts/iol/index.py", f"{base_dir}/addons/iol/bin/index.py")
+print(Fore.GREEN + f"Copying index.py to {base_dir}/addons/qemu/index.py" + Style.RESET_ALL)
 shutil.copyfile("scripts/qemu/index.py", f"{base_dir}/addons/qemu/index.py")
+print(Fore.GREEN + "--- Indexing scripts copied ---" + Style.RESET_ALL)
 
 # Run indexing scripts
 print(Fore.GREEN + "- Indexing IOL images..." + Style.RESET_ALL)
@@ -37,8 +39,14 @@ DYNAMIPS_INDEX = f"{base_dir}/addons/dynamips/index.main.dynamips.json"
 
 # Copy each index file to the current directory
 for index_file in [IOL_INDEX, QEMU_INDEX, DYNAMIPS_INDEX]:
+    print(Fore.GREEN + f"Creating index file for {index_file}..." + Style.RESET_ALL)
+    # Get the file name without the path and change main to od
+    local_index_file_name = index_file.split("/")[-1].replace("main", "od")
     print(Fore.GREEN + f"Copying {index_file}..." + Style.RESET_ALL)
-    shutil.copyfile(index_file, f"index.od.{index_file.split('.')[-1]}") # Copy to current directory with new name: index.od.bin.json, index.od.qemu.json, index.od.dynamips.json
+    shutil.copyfile(index_file, local_index_file_name)
+    print(Fore.GREEN + f"Copied {index_file} to {local_index_file_name}" + Style.RESET_ALL)
+    print(Fore.GREEN + f"--- Index file created at: {local_index_file_name} ---" + Style.RESET_ALL)
+print(Fore.GREEN + "--- Indexing completed ---" + Style.RESET_ALL)
 
 print(Fore.GREEN + "-- Indexing completed --" + Style.RESET_ALL)
 

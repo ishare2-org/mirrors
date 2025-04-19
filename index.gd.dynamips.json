@@ -4,7 +4,7 @@
         "format": ".image",
         "name": "c1710-[1]-adventerprisek9-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c1710-%5B1%5D-adventerprisek9-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c1710-%5B1%5D-adventerprisek9-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -16,7 +16,7 @@
         "format": ".image",
         "name": "c1710-bk9no3r2sy-mz.124-23.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c1710-bk9no3r2sy-mz.124-23.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c1710-bk9no3r2sy-mz.124-23.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -26,21 +26,9 @@
     {
         "id": 3,
         "format": ".image",
-        "name": "c1760-[1]-adventerprisek9-mz.124-25d.image",
-        "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c1760-%5B1%5D-adventerprisek9-mz.124-25d.image"
-        ],
-        "download_path": "/opt/unetlab/addons/dynamips/",
-        "type": "dynamips",
-        "size": 57475320,
-        "human_readable_size": "54.8 MiB"
-    },
-    {
-        "id": 4,
-        "format": ".image",
         "name": "c2600-[1]-adventerprisek9_ivs-mz.124-25b.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c2600-%5B1%5D-adventerprisek9_ivs-mz.124-25b.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c2600-%5B1%5D-adventerprisek9_ivs-mz.124-25b.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -48,11 +36,11 @@
         "human_readable_size": "71.1 MiB"
     },
     {
-        "id": 5,
+        "id": 4,
         "format": ".image",
         "name": "c2600-[2]-advipservicesk9-mz.124-25b.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c2600-%5B2%5D-advipservicesk9-mz.124-25b.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c2600-%5B2%5D-advipservicesk9-mz.124-25b.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -60,11 +48,11 @@
         "human_readable_size": "66.8 MiB"
     },
     {
-        "id": 6,
+        "id": 5,
         "format": ".image",
         "name": "c2600-[3]-adventerprisek9-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c2600-%5B3%5D-adventerprisek9-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c2600-%5B3%5D-adventerprisek9-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -72,11 +60,11 @@
         "human_readable_size": "70.5 MiB"
     },
     {
-        "id": 7,
+        "id": 6,
         "format": ".image",
         "name": "c2691-[1]-adventerprisek9_ivs-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c2691-%5B1%5D-adventerprisek9_ivs-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c2691-%5B1%5D-adventerprisek9_ivs-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -84,11 +72,11 @@
         "human_readable_size": "77.5 MiB"
     },
     {
-        "id": 8,
+        "id": 7,
         "format": ".image",
         "name": "c2691-[2]advsecurityk9-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c2691-%5B2%5Dadvsecurityk9-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c2691-%5B2%5Dadvsecurityk9-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -96,11 +84,11 @@
         "human_readable_size": "42.7 MiB"
     },
     {
-        "id": 9,
+        "id": 8,
         "format": ".image",
         "name": "c3640-[1]-a3js-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c3640-%5B1%5D-a3js-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c3640-%5B1%5D-a3js-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -108,11 +96,11 @@
         "human_readable_size": "62.6 MiB"
     },
     {
-        "id": 10,
+        "id": 9,
         "format": ".image",
         "name": "c3640-[2]-telco-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c3640-%5B2%5D-telco-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c3640-%5B2%5D-telco-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -120,11 +108,11 @@
         "human_readable_size": "31.8 MiB"
     },
     {
-        "id": 11,
+        "id": 10,
         "format": ".image",
         "name": "c3660-[1]-jk9s2-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c3660-%5B1%5D-jk9s2-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c3660-%5B1%5D-jk9s2-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -132,11 +120,11 @@
         "human_readable_size": "72.5 MiB"
     },
     {
-        "id": 12,
+        "id": 11,
         "format": ".image",
         "name": "c3660-[2]-a3js-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c3660-%5B2%5D-a3js-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c3660-%5B2%5D-a3js-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -144,11 +132,11 @@
         "human_readable_size": "70.1 MiB"
     },
     {
-        "id": 13,
+        "id": 12,
         "format": ".image",
         "name": "c3660-[3]-is-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c3660-%5B3%5D-is-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c3660-%5B3%5D-is-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -156,11 +144,11 @@
         "human_readable_size": "64.4 MiB"
     },
     {
-        "id": 14,
+        "id": 13,
         "format": ".image",
         "name": "c3725-[1]-adventerprisek9-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c3725-%5B1%5D-adventerprisek9-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c3725-%5B1%5D-adventerprisek9-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -168,11 +156,11 @@
         "human_readable_size": "78.1 MiB"
     },
     {
-        "id": 15,
+        "id": 14,
         "format": ".image",
         "name": "c3725-[2]-advipservicesk9-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c3725-%5B2%5D-advipservicesk9-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c3725-%5B2%5D-advipservicesk9-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -180,11 +168,11 @@
         "human_readable_size": "74.6 MiB"
     },
     {
-        "id": 16,
+        "id": 15,
         "format": ".image",
         "name": "c3725-[3]-advsecurityk9-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c3725-%5B3%5D-advsecurityk9-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c3725-%5B3%5D-advsecurityk9-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -192,11 +180,11 @@
         "human_readable_size": "43.9 MiB"
     },
     {
-        "id": 17,
+        "id": 16,
         "format": ".image",
         "name": "c3725-adventerprisek9-mz.124-15.T14.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c3725-adventerprisek9-mz.124-15.T14.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c3725-adventerprisek9-mz.124-15.T14.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -204,11 +192,11 @@
         "human_readable_size": "93.3 MiB"
     },
     {
-        "id": 18,
+        "id": 17,
         "format": ".image",
         "name": "c3745-[1]-adventerprisek9-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c3745-%5B1%5D-adventerprisek9-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c3745-%5B1%5D-adventerprisek9-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -216,11 +204,11 @@
         "human_readable_size": "78.3 MiB"
     },
     {
-        "id": 19,
+        "id": 18,
         "format": ".image",
         "name": "c3745-[2]-advipservicesk9-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c3745-%5B2%5D-advipservicesk9-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c3745-%5B2%5D-advipservicesk9-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -228,11 +216,11 @@
         "human_readable_size": "74.8 MiB"
     },
     {
-        "id": 20,
+        "id": 19,
         "format": ".image",
         "name": "c3745-[3]-advsecurityk9-mz.124-25d.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c3745-%5B3%5D-advsecurityk9-mz.124-25d.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c3745-%5B3%5D-advsecurityk9-mz.124-25d.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -240,11 +228,11 @@
         "human_readable_size": "44.1 MiB"
     },
     {
-        "id": 21,
+        "id": 20,
         "format": ".image",
         "name": "c7200-[10]-adventerprisek9-mz.151-4.M2.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c7200-%5B10%5D-adventerprisek9-mz.151-4.M2.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c7200-%5B10%5D-adventerprisek9-mz.151-4.M2.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -252,11 +240,11 @@
         "human_readable_size": "112.5 MiB"
     },
     {
-        "id": 22,
+        "id": 21,
         "format": ".image",
         "name": "c7200-[11]-advsecurityk9-mz.150-1.M9.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c7200-%5B11%5D-advsecurityk9-mz.150-1.M9.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c7200-%5B11%5D-advsecurityk9-mz.150-1.M9.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -264,11 +252,11 @@
         "human_readable_size": "92.0 MiB"
     },
     {
-        "id": 23,
+        "id": 22,
         "format": ".image",
         "name": "c7200-[1]-a3jk9s-mz.124-25g.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c7200-%5B1%5D-a3jk9s-mz.124-25g.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c7200-%5B1%5D-a3jk9s-mz.124-25g.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -276,11 +264,11 @@
         "human_readable_size": "68.2 MiB"
     },
     {
-        "id": 24,
+        "id": 23,
         "format": ".image",
         "name": "c7200-[2]-adventerprisek9-mz.152-4.M7.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c7200-%5B2%5D-adventerprisek9-mz.152-4.M7.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c7200-%5B2%5D-adventerprisek9-mz.152-4.M7.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -288,11 +276,11 @@
         "human_readable_size": "122.5 MiB"
     },
     {
-        "id": 25,
+        "id": 24,
         "format": ".image",
         "name": "c7200-[3]-advipservicesk9-mz.152-4.S2.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c7200-%5B3%5D-advipservicesk9-mz.152-4.S2.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c7200-%5B3%5D-advipservicesk9-mz.152-4.S2.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -300,11 +288,11 @@
         "human_readable_size": "83.5 MiB"
     },
     {
-        "id": 26,
+        "id": 25,
         "format": ".image",
         "name": "c7200-adventerprisek9-mz.152-4.S2.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c7200-adventerprisek9-mz.152-4.S2.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c7200-adventerprisek9-mz.152-4.S2.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
@@ -312,11 +300,11 @@
         "human_readable_size": "89.0 MiB"
     },
     {
-        "id": 27,
+        "id": 26,
         "format": ".image",
         "name": "c7200-adventerprisek9-mz.152-4.S6.image",
         "download_links": [
-            "https://drive.labhub.eu.org/0:/UNETLAB%20I/addons/dynamips/c7200-adventerprisek9-mz.152-4.S6.image"
+            "https://drive.labhub.eu.org/0:/addons/dynamips/c7200-adventerprisek9-mz.152-4.S6.image"
         ],
         "download_path": "/opt/unetlab/addons/dynamips/",
         "type": "dynamips",
