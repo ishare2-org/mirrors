@@ -1,113 +1,218 @@
 #!/usr/bin/env python3
 import os
 import json
+import argparse
 import urllib.parse
 from collections import OrderedDict
+from tqdm import tqdm
 
-# Get the absolute path of the current script
-script_dir = os.path.dirname(os.path.abspath(__file__))
+# Get absolute path of current script file
+script_directory = os.path.dirname(os.path.abspath(__file__))
 
-# Configuration
-image_type = os.path.abspath(script_dir).split('/')[-1]
-hostname = "labhub.eu.org"
-parent_dir = os.path.abspath(os.path.join(script_dir, os.pardir, os.pardir)).split('/')[-1]
-remote_path = f"/api/raw/?path=/addons/{image_type}"
-download_path = f"/opt/unetlab/addons/{image_type}/"
+# Configuration parameters
+image_category = os.path.abspath(script_directory).split('/')[-1]
+api_hostname = "labhub.eu.org"
+unused_parent_dir = os.path.abspath(os.path.join(script_directory, os.pardir, os.pardir)).split('/')[-1]
+remote_api_path = f"/api/raw/?path=/addons/{image_category}"
+local_install_path = f"/opt/unetlab/addons/{image_category}/"
 
-def sizeof_fmt(num, suffix='B'):
+
+# File type mapping configuration
+FILE_TYPE_MAPPING = {
+    '.qcow2': 'disk',
+    '.img': 'disk',
+    '.vmdk': 'disk',
+    '.iso': 'disk',
+    '.yml': 'template',
+    '.yaml': 'template',
+    '.txt': 'document',
+    '.md': 'document',
+    '.tar.gz': 'archive',
+    '.tgz': 'archive',
+    '.zip': 'archive',
+    '.py': 'script',
+    '.sh': 'script',
+    '.png': 'image',
+}
+
+def get_file_type(file_format: str):
+    """Determine file type based on file extension"""
+    return FILE_TYPE_MAPPING.get(file_format.lower(), 'other')
+
+def convert_size_human_readable(num_bytes, suffix='B'):
+    """Convert byte size to human-readable format"""
     for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
-        if abs(num) < 1024.0:
-            return "%3.1f %s%s" % (num, unit, suffix)
-        num /= 1024.0
-    return "%.1f %s%s" % (num, 'Yi', suffix)
+        if abs(num_bytes) < 1024.0:
+            return "%3.1f %s%s" % (num_bytes, unit, suffix)
+        num_bytes /= 1024.0
+    return "%.1f %s%s" % (num_bytes, 'Yi', suffix)
 
-def encode_url_component(component):
+def url_encode_component(component):
+    """URL-encode path components"""
     return urllib.parse.quote(component, safe='/,=?')
 
-def generate_file_entry(filename, relative_path, root):
-    encoded_hostname = encode_url_component(hostname)
-    encoded_remote_path = encode_url_component(remote_path)
-    encoded_relative_path = encode_url_component(relative_path)
-    encoded_filename = encode_url_component(filename)
+def create_file_object(file_path, relative_dir, verbose=False):
+    """Create a detailed file object with metadata"""
+    file_name = os.path.basename(file_path)
+    if verbose:
+        tqdm.write(f" Processing file: {file_name}")
 
-    link = f"https://{encoded_hostname}{encoded_remote_path}/{encoded_relative_path}/{encoded_filename}"
+    # URL components encoding
+    encoded_host = url_encode_component(api_hostname)
+    encoded_api_path = url_encode_component(remote_api_path)
+    encoded_relative_dir = url_encode_component(relative_dir)
+    encoded_filename = url_encode_component(file_name)
 
-    size = os.path.getsize(os.path.join(root, filename))  # get size in bytes
-    human_readable_size = sizeof_fmt(size)  # convert size to human-readable format
-
-    entry = OrderedDict([
-        ("format", os.path.splitext(filename)[1]),
-        ("name", filename),
-        ("download_links", [link]),
-        ("download_path", download_path),
-        ("type", image_type),
-        ("size", size),  # add size to the entry
-        ("human_readable_size", human_readable_size)  # add human-readable size to the entry
+    # File metadata
+    file_format = os.path.splitext(file_name)[1]
+    file_size = os.path.getsize(file_path)
+    
+    return OrderedDict([
+        ("url", f"https://{encoded_host}{encoded_api_path}/{encoded_relative_dir}/{encoded_filename}"),
+        ("size", file_size),
+        ("human_readable_size", convert_size_human_readable(file_size)),
+        ("format", file_format),
+        ("type", get_file_type(file_format))
     ])
 
-    return entry, link
+def process_directory_entry(current_dir, files, verbose=False):
+    """Process a directory containing QCOW2 files and create entry"""
+    folder_name = os.path.basename(current_dir)
+    if verbose:
+        tqdm.write(f" Creating directory entry: {folder_name}")
 
-def generate_index(directory):
-    index_data = []
-    for root, dirs, files in os.walk(directory):
-        all_files = []
-        qcow2_present = False
-        for filename in files:
-            full_path = os.path.relpath(os.path.join(root, filename), script_dir)
-            relative_path = os.path.dirname(full_path)
-            file_entry, link = generate_file_entry(filename, relative_path, root)
-            all_files.append((file_entry, link))
-            if filename.endswith('.qcow2'):
-                qcow2_present = True
+    # Calculate relative path from script directory
+    relative_dir = os.path.relpath(current_dir, script_directory)
+    
+    # Process all files in directory
+    file_objects = []
+    total_size = 0
+    
+    for filename in files:
+        file_path = os.path.join(current_dir, filename)
+        file_obj = create_file_object(file_path, relative_dir, verbose)
+        file_objects.append(file_obj)
+        total_size += file_obj['size']
 
-        if qcow2_present:
-            folder_name = os.path.basename(root)
-            links = [file_entry_link[1] for file_entry_link in all_files]
+    return OrderedDict([
+        ("format", ".qcow2"),
+        ("name", folder_name),
+        ("files", file_objects),
+        ("download_path", f"{local_install_path}{folder_name}"),
+        ("type", image_category),
+        ("total_size", total_size),
+        ("total_human_readable_size", convert_size_human_readable(total_size))
+    ])
 
-            total_size_qcow2_files = sum(os.path.getsize(os.path.join(root, file)) for file in files if file.endswith('.qcow2'))
-            human_readable_total_size_qcow2_files = sizeof_fmt(total_size_qcow2_files)
+def process_single_file_entry(file_path, verbose=False):
+    """Process a single file entry (TGZ/ZIP) and create metadata"""
+    file_name = os.path.basename(file_path)
+    if verbose:
+        tqdm.write(f" Creating archive entry: {file_name}")
 
-            entry = {
-                "format": ".qcow2",
-                "name": folder_name,
-                "download_links": links,
-                "download_path": download_path + folder_name,
-                "type": image_type,
-                "size": total_size_qcow2_files,  # add total size of .qcow2 files to the entry
-                "human_readable_size": human_readable_total_size_qcow2_files  # add human-readable total size of .qcow2 files to the entry
-            }
+    # Calculate relative path from script directory
+    relative_dir = os.path.relpath(os.path.dirname(file_path), script_directory)
+    
+    # Create file object
+    file_obj = create_file_object(file_path, relative_dir, verbose)
+    
+    # Base name without extension
+    base_name = os.path.splitext(file_name)[0]
+    
+    return OrderedDict([
+        ("format", file_obj['format']),
+        ("name", base_name),
+        ("files", [file_obj]),
+        ("download_path", f"{local_install_path}{base_name}"),
+        ("type", image_category),
+        ("total_size", file_obj['size']),
+        ("total_human_readable_size", file_obj['human_readable_size'])
+    ])
 
-            index_data.append(entry)
+def generate_directory_index(start_path, truncate=None, verbose=False):
+    """Generate index data with restructured format"""
+    index_entries = []
+    entry_count = 0
+
+    # First pass to count potential entries for accurate progress
+    total_entries = 0
+    for current_dir, _, files in os.walk(start_path):
+        if any(f.endswith('.qcow2') for f in files):
+            total_entries += 1
         else:
-            for file_entry, link in all_files:
-                if file_entry["format"] in [".tgz", ".zip"]:
-                    file_entry["format"] = file_entry["format"]
-                    file_entry["name"] = os.path.splitext(file_entry["name"])[0]
-                    file_entry["download_links"] = [link]
-                    file_entry["download_path"] += file_entry["name"]
+            total_entries += sum(1 for f in files if f.endswith(('.tgz', '.tar.gz', '.zip')))
 
-                    index_data.append(file_entry)
+    # Apply truncate if specified
+    if truncate is not None:
+        total_entries = min(total_entries, truncate)
 
-    return index_data
+    with tqdm(
+        desc="Indexing files",
+        total=total_entries,
+        unit="entry",
+        colour="#00ff00",
+        bar_format="{l_bar}{bar:40}{r_bar}",
+        disable=verbose  # Disable bar in verbose mode to avoid conflict with logs
+    ) as progress_bar:
+        for current_dir, subdirs, files in os.walk(start_path):
+            if entry_count >= total_entries:
+                break
 
-def save_to_json(index_data, output_file):
-    with open(output_file, 'w') as json_file:
-        json.dump(index_data, json_file, indent=4)
+            # Process directories with QCOW2 files
+            qcow2_files = [f for f in files if f.endswith('.qcow2')]
+            if qcow2_files:
+                dir_entry = process_directory_entry(current_dir, files, verbose)
+                index_entries.append(dir_entry)
+                entry_count += 1
+                progress_bar.update(1)
+                progress_bar.set_postfix_str(f"📁 {dir_entry['name'][:15]}...")
 
-def print_summary(index_data):
-    file_formats = [".qcow2", ".tgz", ".zip"]
-    num_entries = len(index_data)
-    num_entries_by_format = {format: sum(1 for entry in index_data if entry["format"] == format) for format in file_formats}
+                if entry_count >= total_entries:
+                    break
 
-    print("Summary of indexed data:")
-    print(f"Total number of entries: {num_entries}")
-    for format in file_formats:
-        print(f"Number of {format} entries: {num_entries_by_format[format]}")
+            # Process individual archive files
+            else:
+                for filename in files:
+                    if entry_count >= total_entries:
+                        break
+                    if filename.endswith(('.tgz', '.tar.gz', '.zip')):
+                        file_path = os.path.join(current_dir, filename)
+                        file_entry = process_single_file_entry(file_path, verbose)
+                        index_entries.append(file_entry)
+                        entry_count += 1
+                        progress_bar.update(1)
+                        progress_bar.set_postfix_str(f"📦 {file_entry['name'][:15]}...")
+
+    return index_entries
+
+def write_json_output(data, output_path):
+    """Write index data to JSON file"""
+    with open(output_path, 'w') as json_file:
+        json.dump(data, json_file, indent=4)
+
+def display_index_summary(index_data):
+    """Print statistics about the generated index"""
+    target_formats = [".qcow2", ".tgz", ".tar.gz", ".zip"]
+    print("\nIndex generation summary:")
+    print(f"Total indexed items: {len(index_data)}")
+    for fmt in target_formats:
+        count = sum(1 for e in index_data if e["format"] == fmt)
+        print(f"{fmt} files/directories: {count}")
 
 if __name__ == "__main__":
-    output_file_path = os.path.join(script_dir, "index.main.qemu.json")  # Output JSON file path
+    parser = argparse.ArgumentParser(description="Generate file index with optional truncation and verbose output")
+    parser.add_argument("--truncate", type=int, help="Stop after generating specified number of entries")
+    parser.add_argument("--verbose", action="store_true", help="Enable detailed logging")
+    args = parser.parse_args()
 
-    index_data = generate_index(script_dir)
-    save_to_json(index_data, output_file_path)
-
-    print("Indexing completed. JSON file created at:", output_file_path)
+    output_json_path = os.path.join(script_directory, "index.main.qemu.json")
+    
+    index_data = generate_directory_index(
+        script_directory,
+        truncate=args.truncate,
+        verbose=args.verbose
+    )
+    
+    write_json_output(index_data, output_json_path)
+    display_index_summary(index_data)
+    print(f"\nOutput file: {output_json_path}")
