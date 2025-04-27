@@ -15,9 +15,9 @@ SOURCE_DIRS=(
     "addons/dynamips/"
 )
 DEST_FILES=(
-    "iol_hashes.txt"
-    "qemu_hashes.txt"
-    "dynamips_hashes.txt"
+    "iol_hashes"
+    "qemu_hashes"
+    "dynamips_hashes"
 )
 OUTPUT_DIR="labhub_hashes"
 
@@ -80,17 +80,30 @@ generate_hashes() {
 
         [ $VERBOSE -eq 1 ] && print_info "Processing directory: ${source_dir}"
 
-        echo -e "${CYAN}⏳ Generating hashes for ${BOLD}${source_dir}${NC}..."
+        echo -e "${CYAN}⏳ Generating hashes SHA1 for ${BOLD}${source_dir}${NC}..."
 
-        if rclone sha1sum "$REMOTE_NAME:$source_dir" --output-file "$dest_file"; then
-            [ $VERBOSE -eq 1 ] && print_info "Saved hashes to: ${dest_file}"
+        if rclone sha1sum "$REMOTE_NAME:$source_dir" --output-file "$dest_file.sha1sum.txt"; then
+            [ $VERBOSE -eq 1 ] && print_info "Saved hashes to: ${dest_file}.sha1sum.txt"
             print_success "Completed ${source_dir}"
 
             # Show quick stats
-            file_count=$(wc -l <"$dest_file")
+            file_count=$(wc -l <"$dest_file.sha1sum.txt")
             echo -e "   ${CYAN}📊 Hashes generated: ${BOLD}${file_count}${NC}"
         else
-            print_error "Failed to generate hashes for ${source_dir}"
+            print_error "Failed to generate sha1 hashes for ${source_dir}"
+            exit 1
+        fi
+
+        echo -e "${CYAN}⏳ Generating hashes MD5 for ${BOLD}${source_dir}${NC}..."
+        if rclone md5sum "$REMOTE_NAME:$source_dir" --output-file "$dest_file.md5sum.txt"; then
+            [ $VERBOSE -eq 1 ] && print_info "Saved hashes to: ${dest_file}.md5sum.txt"
+            print_success "Completed ${source_dir}"
+
+            # Show quick stats
+            file_count=$(wc -l <"$dest_file.md5sum.txt")
+            echo -e "   ${CYAN}📊 Hashes generated: ${BOLD}${file_count}${NC}"
+        else
+            print_error "Failed to generate md5 hashes for ${source_dir}"
             exit 1
         fi
 
