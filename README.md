@@ -13,22 +13,15 @@ python3 index.py
 
 ## Directory structure
 
-```bash
-UNETLAB/
-├── UNETLAB I
-│   └── addons
-│       ├── dynamips
-│       │    └── index.py
-│       ├── iol
-│       │   └── index.py
-│       └── qemu
-│           └── index.py
-└── UNETLAB II
-    └── addons
-        ├── iol
-        │   └── index.py
-        └── qemu
-            └── index.py
+```plaintext
+REPOSITORY/
+ └── addons
+     ├── dynamips
+     │   └── index.py
+     ├── iol
+     │   └── index.py
+     └── qemu
+         └── index.py
 ```
 
 ## Main index script `index.py` explanation
@@ -67,17 +60,27 @@ Types: `qemu`, `iol`, `dynamips`
 
 ```json
 {
-        "id": 1,
-        "format": "imageFormat",
-        "name": "imageName",
-        "download_links": [
-            "link1",
-            "link2",
-            "..."
-        ],
-        "download_path": "path/to/emulator/directory",
-        "type": "imageType",
-        "size": "imageSize"
+  "id": 1,
+  "name": "c1710-[1]-adventerprisek9-mz.124-25d",
+  "type": "dynamips",
+  "files": [
+    {
+      "url": "https://.../c1710-%5B1%5D-adventerprisek9-mz.124-25d.image",
+      "size": 0,
+      "human_size": "0.0 B",
+      "file_type": "firmware",
+      "extension": ".image",
+      "checksum": {
+        "md5": "...",
+        "sha1": "..."
+      }
+    }
+  ],
+  "metadata": {
+    "download_path": "/opt/unetlab/addons/dynamips/",
+    "total_size": 0,
+    "total_human_readable_size": "0.0 B"
+  }
 }
 ```
 
@@ -91,42 +94,72 @@ This JSON will contain all the images from all the types after they are merged f
 {
     "QEMU": [{
         "id": 1,
-        "format": "imageFormat",
         "name": "imageName",
-        "download_links": [
-            "link1",
-            "link2",
-            "..."
-        ],
-        "download_path": "path/to/emulator/directory",
         "type": "imageType",
-        "size": "imageSize"
+        "files": [
+            {
+                "url": "link1",
+                "size": 0,
+                "human_size": "0.0 B",
+                "file_type": "firmware",
+                "extension": ".image",
+                "checksum": {
+                    "md5": "...",
+                    "sha1": "..."
+                }
+            }
+        ],
+        "metadata": {
+            "download_path": "path/to/emulator/directory",
+            "total_size": 0,
+            "total_human_readable_size": "0.0 B"
+        }
     }],
     "IOL": [{
         "id": 1,
-        "format": "imageFormat",
         "name": "imageName",
-        "download_links": [
-            "link1",
-            "link2",
-            "..."
-        ],
-        "download_path": "path/to/emulator/directory",
         "type": "imageType",
-        "size": "imageSize"
+        "files": [
+            {
+                "url": "link1",
+                "size": 0,
+                "human_size": "0.0 B",
+                "file_type": "firmware",
+                "extension": ".image",
+                "checksum": {
+                    "md5": "...",
+                    "sha1": "..."
+                }
+            }
+        ],
+        "metadata": {
+            "download_path": "path/to/emulator/directory",
+            "total_size": 0,
+            "total_human_readable_size": "0.0 B"
+        }
     }],
     "DYNAMIPS": [{
         "id": 1,
-        "format": "imageFormat",
         "name": "imageName",
-        "download_links": [
-            "link1",
-            "link2",
-            "..."
-        ],
-        "download_path": "path/to/emulator/directory",
         "type": "imageType",
-        "size": "imageSize"
+        "files": [
+            {
+                "url": "link1",
+                "size": 0,
+                "human_size": "0.0 B",
+                "file_type": "firmware",
+                "extension": ".image",
+                "checksum": {
+                    "md5": "...",
+                    "sha1": "..."
+                }
+            }
+        ],
+        "metadata": {
+            "download_path": "path/to/emulator/directory",
+            "total_size": 0,
+            "total_human_readable_size": "0.0 B"
+        }
     }],
 }
 ```
