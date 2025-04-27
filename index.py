@@ -273,6 +273,62 @@ def post_processing():
                 print_error(f"Failed to run {script}: {str(e)}")
                 exit(1)
 
+def cleanup_leftovers():
+    """Cleanup index.py scripts and generated json files with progress tracking"""
+    print_step("Cleaning up leftover files...", "🧹")
+    
+    # Collect all files to remove
+    script_files = []
+    json_files = []
+    
+    # First pass to find all existing files
+    for img_type in IMAGE_TYPES:
+        script_path = os.path.join(BASE_DIR, "addons", img_type.lower(), INDEX_SUFFIXES[img_type], "index.py")
+        if os.path.exists(script_path):
+            script_files.append(script_path)
+            
+        json_path = os.path.join(
+            BASE_DIR, "addons", img_type.lower(), 
+            INDEX_SUFFIXES[img_type], f"index.main.{img_type.lower()}.json"
+        )
+        if os.path.exists(json_path):
+            json_files.append(json_path)
+    
+    # Custom progress bar style with emojis
+    bar_format = "{l_bar}{bar:20}{r_bar}{bar:-10b}"
+    
+    # Create progress bars with emojis and styling
+    with tqdm(total=len(script_files),
+             desc="📜 Scripts", 
+             bar_format=bar_format,
+             colour='#00ff00',
+             unit=' file',
+             dynamic_ncols=True) as script_bar, \
+         tqdm(total=len(json_files),
+             desc="📊 JSONs",
+             bar_format=bar_format,
+             colour='#00ff00',
+             unit=' file',
+             dynamic_ncols=True) as json_bar:
+        
+        # Process script files
+        for script_file in script_files:
+            try:
+                os.remove(script_file)
+                script_bar.update(1)
+            except Exception as e:
+                print_error(f"Failed to remove {script_file}: {str(e)}")
+                script_bar.update(1)
+                
+        # Process JSON files
+        for json_file in json_files:
+            try:
+                os.remove(json_file)
+                json_bar.update(1)
+            except Exception as e:
+                print_error(f"Failed to remove {json_file}: {str(e)}")
+                json_bar.update(1)
+
 def main():
     print_header()
     validate_directory_structure()
@@ -286,11 +342,15 @@ def main():
     process_index_files()
     post_processing()
     
+
     # Show summary
     total_images, total_sizes = get_indexed_counts()
     show_results_table(results, total_images, total_sizes)
     
     console.print("\n🎉 [bold green]Repository indexing completed successfully![/]\n")
+    # Cleanup leftover scripts and files
+    cleanup_leftovers()
+    print_success("Cleaned up leftover scripts and files")
 
 if __name__ == "__main__":
     main()
