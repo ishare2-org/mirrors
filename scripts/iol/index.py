@@ -126,7 +126,7 @@ if __name__ == "__main__":
     parser.add_argument("--verbose", action="store_true", help="Enable detailed processing output")
     args = parser.parse_args()
 
-    output_file_path = os.path.join(script_dir, "index.main.bin.json")
+    output_file_path = os.path.join(script_dir, "index.main.iol.json")
     
     index_data = generate_index(
         script_dir,
