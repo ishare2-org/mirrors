@@ -28,6 +28,55 @@ def url_encode_component(component):
     """URL-encode components while preserving needed characters"""
     return urllib.parse.quote(component, safe='/,=?')
 
+def lookup_hash(image_name, hash_type):
+    """Look up file hash from stored checksum files with progress tracking"""
+    hashes_dir = "labhub_hashes"
+    hash_files = {
+        "md5": "iol_hashes.md5sum.txt",
+        "sha1": "iol_hashes.sha1sum.txt"
+    }
+    
+    if hash_type not in hash_files:
+        print(f"❌ Invalid hash type: {hash_type}. Use 'md5' or 'sha1'")
+        return ""
+
+    hash_path = os.path.join(hashes_dir, hash_files[hash_type])
+    
+    try:
+        # Get total lines for progress bar
+        with open(hash_path, 'r') as f:
+            total_lines = sum(1 for _ in f)
+            
+        with open(hash_path, 'r') as f, \
+             tqdm(total=total_lines, 
+                  desc=f"🔍 Searching {hash_type.upper()} hashes",
+                  unit="file",
+                  bar_format="{l_bar}{bar:30}{r_bar}",
+                  colour="#00ff00") as progress:
+
+            for line in f:
+                progress.update(1)
+                line = line.strip()
+                if not line:
+                    continue
+                
+                parts = line.split('  ', 1)
+                if len(parts) != 2:
+                    continue
+                
+                current_hash, filename = parts
+                if filename == image_name:
+                    progress.close()
+                    return current_hash
+                    
+    except FileNotFoundError:
+        print(f"❌ Hash file not found: {hash_path}")
+    except Exception as e:
+        print(f"❌ Error reading hash file: {str(e)}")
+    
+    return ""
+
+
 def generate_file_entry(file_path, filename):
     """Create detailed file entry with metadata"""
     size = os.path.getsize(file_path)
@@ -38,7 +87,12 @@ def generate_file_entry(file_path, filename):
         ("size", size),
         ("human_readable_size", sizeof_fmt(size)),
         ("format", ".bin"),
-        ("type", "firmware")
+        ("type", "firmware"),
+        ("checksum", {
+            "md5": lookup_hash(filename, "md5"),
+            "sha1": lookup_hash(filename, "sha1")
+            }
+        )
     ])
 
 def generate_index(directory, truncate=None, verbose=False):

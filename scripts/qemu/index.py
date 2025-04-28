@@ -51,6 +51,59 @@ def url_encode_component(component):
     """URL-encode path components"""
     return urllib.parse.quote(component, safe='/,=?')
 
+def lookup_hash(file_path, hash_type):
+    """Look up file hash using full relative path from repository root"""
+    hashes_dir = "labhub_hashes"
+    hash_files = {
+        "md5": "qemu_hashes.md5sum.txt",
+        "sha1": "qemu_hashes.sha1sum.txt"
+    }
+    
+    if hash_type not in hash_files:
+        print(f"❌ Invalid hash type: {hash_type}. Use 'md5' or 'sha1'")
+        return ""
+
+    hash_path = os.path.join(hashes_dir, hash_files[hash_type])
+    
+    try:
+        # Get relative path from repository root (POSIX format)
+        relative_path = os.path.relpath(file_path, start=script_directory)
+        relative_path = relative_path.replace(os.path.sep, '/')  # Normalize to POSIX
+        
+        with open(hash_path, 'r') as f, \
+             tqdm(total=os.path.getsize(hash_path), 
+                  desc=f"🔍 Searching {hash_type.upper()} hashes",
+                  unit='B',
+                  unit_scale=True,
+                  bar_format="{l_bar}{bar:30}{r_bar}",
+                  colour="#00ff00") as progress:
+
+            for line in f:
+                progress.update(len(line.encode('utf-8')))
+                line = line.strip()
+                if not line:
+                    continue
+                
+                # Split hash and path, preserving spaces in path
+                parts = line.split('  ', 1)
+                if len(parts) != 2:
+                    continue
+                
+                current_hash, hash_file_path = parts
+                # Normalize hash file path to POSIX format
+                normalized_hash_path = hash_file_path.replace('\\', '/')
+                
+                if normalized_hash_path == relative_path:
+                    progress.close()
+                    return current_hash
+                    
+    except FileNotFoundError:
+        print(f"❌ Hash file not found: {hash_path}")
+    except Exception as e:
+        print(f"❌ Error reading hash file: {str(e)}")
+    
+    return ""
+
 def create_file_object(file_path, relative_dir, verbose=False):
     """Create a detailed file object with metadata"""
     file_name = os.path.basename(file_path)
@@ -72,7 +125,12 @@ def create_file_object(file_path, relative_dir, verbose=False):
         ("size", file_size),
         ("human_readable_size", convert_size_human_readable(file_size)),
         ("format", file_format),
-        ("type", get_file_type(file_format))
+        ("type", get_file_type(file_format)),
+        ("checksum", {
+            "md5": lookup_hash(file_path, "md5"),
+            "sha1": lookup_hash(file_path, "sha1")
+            }
+        )
     ])
 
 def process_directory_entry(current_dir, files, verbose=False):
@@ -147,12 +205,13 @@ def generate_directory_index(start_path, truncate=None, verbose=False):
         total_entries = min(total_entries, truncate)
 
     with tqdm(
-        desc="Indexing files",
+        desc="📁 Indexing files",
         total=total_entries,
         unit="entry",
-        colour="#00ff00",
-        bar_format="{l_bar}{bar:40}{r_bar}",
-        disable=verbose  # Disable bar in verbose mode to avoid conflict with logs
+        colour="#00ffff",  # Cyan color
+        bar_format="{l_bar}{bar:30}{r_bar}",
+        dynamic_ncols=True,
+        disable=verbose
     ) as progress_bar:
         for current_dir, subdirs, files in os.walk(start_path):
             if entry_count >= total_entries:
@@ -165,7 +224,7 @@ def generate_directory_index(start_path, truncate=None, verbose=False):
                 index_entries.append(dir_entry)
                 entry_count += 1
                 progress_bar.update(1)
-                progress_bar.set_postfix_str(f"📁 {dir_entry['name'][:15]}...")
+                progress_bar.set_postfix_str(f"📂 [cyan]{dir_entry['name'][:15]}...[/]")
 
                 if entry_count >= total_entries:
                     break
@@ -181,7 +240,7 @@ def generate_directory_index(start_path, truncate=None, verbose=False):
                         index_entries.append(file_entry)
                         entry_count += 1
                         progress_bar.update(1)
-                        progress_bar.set_postfix_str(f"📦 {file_entry['name'][:15]}...")
+                        progress_bar.set_postfix_str(f"📦 [yellow]{file_entry['name'][:15]}...[/]")
 
     return index_entries
 

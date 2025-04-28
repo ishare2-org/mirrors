@@ -9,6 +9,7 @@ from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn
 from rich.table import Table
 from rich import box
+from tqdm import tqdm
 
 # Initialize rich console
 console = Console()
