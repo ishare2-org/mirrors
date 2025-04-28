@@ -30,7 +30,7 @@ def url_encode_component(component):
 
 def lookup_hash(image_name, hash_type):
     """Look up file hash from stored checksum files with progress tracking"""
-    hashes_dir = "labhub_hashes"
+    hashes_dir = "data/labhub_hashes"
     hash_files = {
         "md5": "iol_hashes.md5sum.txt",
         "sha1": "iol_hashes.sha1sum.txt"
@@ -81,13 +81,14 @@ def generate_file_entry(file_path, filename):
     """Create detailed file entry with metadata"""
     size = os.path.getsize(file_path)
     return OrderedDict([
+        ("filename", filename),
         ("url", f"https://{url_encode_component(hostname)}"
                 f"{url_encode_component(remote_path)}/"
                 f"{url_encode_component(filename)}"),
         ("size", size),
-        ("human_readable_size", sizeof_fmt(size)),
-        ("format", ".bin"),
-        ("type", "firmware"),
+        ("human_size", sizeof_fmt(size)),
+        ("file_type", "firmware"),
+        ("extension", filename.split('.')[-1]),
         ("checksum", {
             "md5": lookup_hash(filename, "md5"),
             "sha1": lookup_hash(filename, "sha1")
@@ -134,19 +135,20 @@ def generate_index(directory, truncate=None, verbose=False):
             try:
                 file_entry = generate_file_entry(file_path, filename)
                 main_entry = OrderedDict([
-                    ("format", ".bin"),
                     ("name", filename),
-                    ("files", [file_entry]),
-                    ("download_path", download_path),
                     ("type", image_type),
-                    ("total_size", file_entry["size"]),
-                    ("total_human_readable_size", file_entry["human_readable_size"])
+                    ("files", [file_entry]),
+                    ("metadata", {
+                        "install_path": download_path,
+                        "total_size": file_entry["size"],
+                        "total_human_size": file_entry["human_size"],
+                    })
                 ])
                 index_data.append(main_entry)
                 processed += 1
                 
                 if verbose:
-                    tqdm.write(f"Added entry for {filename} ({file_entry['human_readable_size']})")
+                    tqdm.write(f"Added entry for {filename} ({file_entry['total_human_size']})")
                     
                 pbar.update(1)
                 # Add emoji and truncate long filenames
@@ -168,7 +170,7 @@ def save_to_json(index_data, output_file):
 def display_summary(index_data):
     """Print summary statistics"""
     total_entries = len(index_data)
-    total_size = sum(entry["total_size"] for entry in index_data) if index_data else 0
+    total_size = sum(entry["metadata"]["total_size"] for entry in index_data) if index_data else 0
     
     print("\nIndexing summary:")
     print(f"Total entries created: {total_entries}")

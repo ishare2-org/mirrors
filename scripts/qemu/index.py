@@ -53,7 +53,7 @@ def url_encode_component(component):
 
 def lookup_hash(file_path, hash_type):
     """Look up file hash using full relative path from repository root"""
-    hashes_dir = "labhub_hashes"
+    hashes_dir = "data/labhub_hashes"
     hash_files = {
         "md5": "qemu_hashes.md5sum.txt",
         "sha1": "qemu_hashes.sha1sum.txt"
@@ -106,26 +106,27 @@ def lookup_hash(file_path, hash_type):
 
 def create_file_object(file_path, relative_dir, verbose=False):
     """Create a detailed file object with metadata"""
-    file_name = os.path.basename(file_path)
+    filename = os.path.basename(file_path)
     if verbose:
-        tqdm.write(f" Processing file: {file_name}")
+        tqdm.write(f" Processing file: {filename}")
 
     # URL components encoding
     encoded_host = url_encode_component(api_hostname)
     encoded_api_path = url_encode_component(remote_api_path)
     encoded_relative_dir = url_encode_component(relative_dir)
-    encoded_filename = url_encode_component(file_name)
+    encoded_filename = url_encode_component(filename)
 
     # File metadata
-    file_format = os.path.splitext(file_name)[1]
+    file_format = os.path.splitext(filename)[1]
     file_size = os.path.getsize(file_path)
     
     return OrderedDict([
+        ("filename", filename),
         ("url", f"https://{encoded_host}{encoded_api_path}/{encoded_relative_dir}/{encoded_filename}"),
         ("size", file_size),
-        ("human_readable_size", convert_size_human_readable(file_size)),
-        ("format", file_format),
-        ("type", get_file_type(file_format)),
+        ("human_size", convert_size_human_readable(file_size)),
+        ("file_type", get_file_type(file_format)),
+        ("extension", file_format),
         ("checksum", {
             "md5": lookup_hash(file_path, "md5"),
             "sha1": lookup_hash(file_path, "sha1")
@@ -153,13 +154,14 @@ def process_directory_entry(current_dir, files, verbose=False):
         total_size += file_obj['size']
 
     return OrderedDict([
-        ("format", ".qcow2"),
         ("name", folder_name),
-        ("files", file_objects),
-        ("download_path", f"{local_install_path}{folder_name}"),
         ("type", image_category),
-        ("total_size", total_size),
-        ("total_human_readable_size", convert_size_human_readable(total_size))
+        ("files", file_objects),
+        ("metadata", {
+            "install_path": f"{local_install_path}{folder_name}",
+            "total_size": total_size,
+            "total_human_size": convert_size_human_readable(total_size),
+        }),
     ])
 
 def process_single_file_entry(file_path, verbose=False):
@@ -178,13 +180,14 @@ def process_single_file_entry(file_path, verbose=False):
     base_name = os.path.splitext(file_name)[0]
     
     return OrderedDict([
-        ("format", file_obj['format']),
         ("name", base_name),
-        ("files", [file_obj]),
-        ("download_path", f"{local_install_path}{base_name}"),
         ("type", image_category),
-        ("total_size", file_obj['size']),
-        ("total_human_readable_size", file_obj['human_readable_size'])
+        ("files", [file_obj]),
+        ("metadata", {
+            "install_path": f"{local_install_path}{base_name}",
+            "total_size": file_obj['size'],
+            "total_human_size": file_obj['human_size'],
+        })
     ])
 
 def generate_directory_index(start_path, truncate=None, verbose=False):
@@ -251,11 +254,11 @@ def write_json_output(data, output_path):
 
 def display_index_summary(index_data):
     """Print statistics about the generated index"""
-    target_formats = [".qcow2", ".tgz", ".tar.gz", ".zip"]
+    target_formats = [".qcow2", ".tgz", ".tar.gz", ".zip", ".gz"]
     print("\nIndex generation summary:")
     print(f"Total indexed items: {len(index_data)}")
-    for fmt in target_formats:
-        count = sum(1 for e in index_data if e["format"] == fmt)
+    for fmt in target_formats: # get from files[] > {extension}
+        count = sum(1 for e in index_data if any(file["extension"] == fmt for file in e["files"]))
         print(f"{fmt} files/directories: {count}")
 
 if __name__ == "__main__":
