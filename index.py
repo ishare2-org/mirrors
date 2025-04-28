@@ -304,6 +304,11 @@ def cleanup_leftovers():
         if os.path.exists(json_path):
             json_files.append(json_path)
     
+    # If no files to remove, exit
+    if not script_files and not json_files:
+        print_success("No leftover files to clean up")
+        return
+
     # Custom progress bar style with emojis
     bar_format = "{l_bar}{bar:20}{r_bar}{bar:-10b}"
     
@@ -362,4 +367,16 @@ def main():
     print_success("Cleaned up leftover scripts and files")
 
 if __name__ == "__main__":
-    main()
+    # on keyboard interrupt, cleanup leftovers
+    try:
+        main()
+    except KeyboardInterrupt:
+        print_error("Process interrupted by user!")
+        cleanup_leftovers()
+        print_success("Cleaned up leftover scripts and files")
+        exit(1)
+    except Exception as e:
+        print_error(f"An unexpected error occurred: {str(e)}")
+        cleanup_leftovers()
+        print_success("Cleaned up leftover scripts and files")
+        exit(1)
