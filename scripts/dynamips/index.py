@@ -14,7 +14,7 @@ download_path = "/opt/unetlab/addons/dynamips/"
 image_type = os.path.abspath(os.path.join(script_dir)).split('/')[-1]
 hostname = "labhub.eu.org"
 parent_dir = os.path.abspath(os.path.join(script_dir)).split('/')[-1]
-remote_path = f"/api/raw/?path=/addons/{image_type}/{parent_dir}"
+remote_path = f"/api/raw/?path=/addons/{parent_dir}"
 
 def sizeof_fmt(num, suffix='B'):
     """Convert bytes to human-readable format"""
