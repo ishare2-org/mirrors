@@ -158,7 +158,7 @@ def process_directory_entry(current_dir, files, verbose=False):
         ("type", image_category),
         ("files", file_objects),
         ("metadata", {
-            "install_path": f"{local_install_path}{folder_name}",
+            "install_path": f"{local_install_path}{folder_name}/",
             "total_size": total_size,
             "total_human_size": convert_size_human_readable(total_size),
         }),
@@ -184,7 +184,7 @@ def process_single_file_entry(file_path, verbose=False):
         ("type", image_category),
         ("files", [file_obj]),
         ("metadata", {
-            "install_path": f"{local_install_path}{base_name}",
+            "install_path": f"{local_install_path}{base_name}/",
             "total_size": file_obj['size'],
             "total_human_size": file_obj['human_size'],
         })

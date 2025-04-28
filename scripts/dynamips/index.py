@@ -87,7 +87,7 @@ def generate_file_entry(file_path, filename):
         ("size", size),
         ("human_size", sizeof_fmt(size)),
         ("file_type", "firmware"),
-        ("extension", filename.split('.')[-1]),
+        ("extension", os.path.splitext(filename)[1]),
         ("checksum", {
             "md5": lookup_hash(filename, "md5"),
             "sha1": lookup_hash(filename, "sha1")
