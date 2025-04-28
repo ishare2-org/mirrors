@@ -4,14 +4,18 @@ from rich.console import Console
 from rich.progress import Progress
 from rich.panel import Panel
 from rich import box
+import os
 
 console = Console()
+
+# Path to the directory where the index files are located
+DIST_DIR="./data/"
 
 # Configuration
 OLD_BASE_URL = "labhub.eu.org/api/raw/?path=/"
 NEW_BASE_URL = "drive.labhub.eu.org/0:/"
-INDEX_FILES = ["index.od.iol.json", "index.od.qemu.json", 
-              "index.od.dynamips.json", "index.od.json"]
+INDEX_FILES = [os.path.join(DIST_DIR,"index.od.iol.json"), os.path.join(DIST_DIR,"index.od.qemu.json"), 
+              os.path.join(DIST_DIR,"index.od.dynamips.json"), os.path.join(DIST_DIR,"index.od.json")]
 
 def print_header():
     """Display styled header"""
@@ -40,7 +44,7 @@ def verify_index_files():
         
         for index_file in INDEX_FILES:
             progress.update(task, advance=1, description=f"Checking {index_file}")
-            
+
             try:
                 with open(index_file, "r") as f:
                     json.load(f)
@@ -67,7 +71,7 @@ def update_urls_in_data(data):
         for item in data:
             update_urls_in_data(item)
 
-def migrate_urls():
+def generate_mirror_urls():
     """Main mirror url generation function"""
     print_step("Starting mirror URL generation...", "🔄")
     
@@ -86,7 +90,7 @@ def migrate_urls():
                 update_urls_in_data(data)
                 
                 # Save new file
-                new_filename = index_file.replace("index.od", "index.gd")
+                new_filename = index_file.replace("index.od", "index.gd")                
                 with open(new_filename, "w") as f:
                     json.dump(data, f, indent=4)
                 
@@ -106,7 +110,7 @@ def main():
     if not verify_index_files():
         return
     
-    if not migrate_urls():
+    if not generate_mirror_urls():
         print_error("Mirror URL generation failed. Check the logs.")
         return
     

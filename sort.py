@@ -10,7 +10,8 @@ from rich import box
 console = Console()
 
 # Configuration
-FILES = ["index.gd.json", "index.od.json"]
+DIST_DIR = "./data/"
+FILES = [os.path.join(DIST_DIR, "index.gd.json"), os.path.join(DIST_DIR, "index.od.json")]
 IMAGE_TYPES = ["iol", "dynamips", "qemu"]
 
 def print_header():
@@ -95,9 +96,10 @@ def main():
     # Generate complete file list
     full_list = FILES.copy()
     for img_type in IMAGE_TYPES:
+        # Add full paths for each image type
         full_list.extend([
-            f"index.gd.{img_type}.json",
-            f"index.od.{img_type}.json"
+            os.path.join(DIST_DIR, f"index.gd.{img_type}.json"),
+            os.path.join(DIST_DIR, f"index.od.{img_type}.json")
         ])
     
     processed_count = 0

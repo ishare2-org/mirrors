@@ -24,6 +24,11 @@ INDEX_SUFFIXES = {
     "DYNAMIPS": ""
 }
 
+# Path to store generated index files
+dist_dir = "./data/"
+if not os.path.exists(dist_dir):
+    os.makedirs(dist_dir)
+
 def print_header():
     """Print beautiful header"""
     console.print(Panel.fit("🚀 LabHub Repository Indexer",
@@ -229,6 +234,8 @@ def process_index_files():
             progress.update(task, advance=1, description=f"Processing {img_type}")
             src_filename = f"index.main.{img_type.lower()}.json"
             dest_filename = src_filename.replace("main", "od")
+            # Save inside ./data/ directory
+            dest_path = os.path.join(dist_dir, dest_filename)
             src_path = os.path.join(
                 BASE_DIR, "addons", img_type.lower(), 
                 INDEX_SUFFIXES[img_type], src_filename
@@ -236,9 +243,9 @@ def process_index_files():
             
             try:
                 progress.console.print(f"📄 Copying [bold]{img_type}[/] index...")
-                shutil.copyfile(src_path, dest_filename)
+                shutil.copyfile(src_path, dest_path)
                 
-                with open(dest_filename, "r") as f:
+                with open(dest_path, "r") as f:
                     merged_data[img_type] = json.load(f)
                     
                 progress.console.print(f"🔗 Merged {len(merged_data[img_type])} {img_type} entries")
@@ -248,7 +255,9 @@ def process_index_files():
                 exit(1)
     
     console.print(f"💾 Saving merged index...")
-    with open("index.od.json", "w") as f:
+    # Save the merged data to a single JSON file
+    merged_filename = os.path.join(dist_dir, "index.od.json")
+    with open(merged_filename, "w") as f:
         json.dump(merged_data, f, indent=4)
     
     print_success(f"Merged {sum(len(v) for v in merged_data.values())} total entries")
@@ -339,7 +348,6 @@ def main():
     results = run_indexing_scripts()
     
     # Process results
-
     process_index_files()
     post_processing()
     

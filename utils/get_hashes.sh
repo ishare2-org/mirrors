@@ -19,7 +19,17 @@ DEST_FILES=(
     "qemu_hashes"
     "dynamips_hashes"
 )
-OUTPUT_DIR="labhub_hashes"
+# Check if script was run from the directory where the script is located
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [[ "$PWD" != "$script_dir" ]]; then
+    echo -e "${RED}Error: Please run this script from the directory where it is located.${NC}"
+    echo -e "Current directory: ${RED}$PWD${NC}"
+    echo -e "Script directory: ${RED}$script_dir${NC}"
+    echo -e "Please change to the script directory and try again."
+    exit 1
+fi
+
+OUTPUT_DIR="../data/labhub_hashes"
 
 # Print usage information
 usage() {
