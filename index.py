@@ -15,7 +15,7 @@ from tqdm import tqdm
 console = Console()
 
 # Configuration
-BASE_DIR = "./labhub-mock/"
+BASE_DIR = "./labhub-repo/"
 SCRIPTS_DIR = "./scripts/"
 IMAGE_TYPES = ["IOL", "QEMU", "DYNAMIPS"]
 INDEX_SUFFIXES = {

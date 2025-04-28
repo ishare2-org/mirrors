@@ -177,7 +177,7 @@ def display_summary(index_data):
     print(f"Total firmware size: {sizeof_fmt(total_size)}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate IOL firmware index with advanced options")
+    parser = argparse.ArgumentParser(description="Generate IOL images index")
     parser.add_argument("--truncate", type=int, help="Limit number of entries processed")
     parser.add_argument("--verbose", action="store_true", help="Enable detailed processing output")
     args = parser.parse_args()

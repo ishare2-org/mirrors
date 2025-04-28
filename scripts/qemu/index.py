@@ -262,7 +262,7 @@ def display_index_summary(index_data):
         print(f"{fmt} files/directories: {count}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate file index with optional truncation and verbose output")
+    parser = argparse.ArgumentParser(description="Generate QEMU images index")
     parser.add_argument("--truncate", type=int, help="Stop after generating specified number of entries")
     parser.add_argument("--verbose", action="store_true", help="Enable detailed logging")
     args = parser.parse_args()
