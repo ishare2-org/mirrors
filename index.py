@@ -3,13 +3,15 @@ import json
 import shutil
 import subprocess
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from rich.console import Console
 from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn
 from rich.table import Table
 from rich import box
 from tqdm import tqdm
+from collections import OrderedDict
+from rich.progress import Progress, SpinnerColumn
 
 # Initialize rich console
 console = Console()
@@ -25,7 +27,7 @@ INDEX_SUFFIXES = {
 }
 
 # Path to store generated index files
-dist_dir = "./data/"
+dist_dir = "./dist/"
 if not os.path.exists(dist_dir):
     os.makedirs(dist_dir)
 
@@ -124,6 +126,18 @@ def run_indexing_scripts():
                 print_error(f"{img_type} indexing failed!")
                 console.print(f"[red]{result.stderr.decode()}[/]")
                 exit(1)
+            else:
+                print_success(f"{img_type} indexing completed successfully!")
+                console.print(f"[green]{result.stdout.decode()}[/]")
+                # Copy the generated JSON file to the dist directory
+                json_src = os.path.join(BASE_DIR, "addons", img_type.lower(), INDEX_SUFFIXES[img_type], f"{img_type.lower()}.json")
+                json_dest = os.path.join(dist_dir, f"{img_type.lower()}.json")
+                try:
+                    shutil.copyfile(json_src, json_dest)
+                    console.print(f"📄 Copied [bold]{img_type}[/] JSON file to {json_dest}")
+                except Exception as e:
+                    print_error(f"Failed to copy {img_type} JSON file: {str(e)}")
+                    exit(1)
     
     return results
 
@@ -142,16 +156,18 @@ def get_indexed_counts():
             
             json_path = os.path.join(
                 BASE_DIR, "addons", img_type.lower(), 
-                INDEX_SUFFIXES[img_type], f"index.main.{img_type.lower()}.json"
+                INDEX_SUFFIXES[img_type], f"{img_type.lower()}.json"
             )
             
             try:
                 with open(json_path, "r") as f:
                     data = json.load(f)
-                    total_images[img_type] = len(data)
+                    # Access the image array using the 'images' key
+                    entries = data.get('images', [])
+                    total_images[img_type] = len(entries)
                     
-                    # Calculate total size in GB
-                    total_bytes = sum(item.get('total_size', 0) for item in data)
+                    # Calculate total size from metadata
+                    total_bytes = sum(entry.get('metadata', {}).get('total_size', 0) for entry in entries)
                     size_gb = total_bytes / (1024 ** 3)
                     total_sizes[img_type] = f"{size_gb:.2f} GB"
                     
@@ -225,63 +241,63 @@ def process_index_files():
     """Process and merge generated index files with rich output"""
     print_step("Compiling final indexes...", "📦")
     
-    merged_data = {}
-    
+    merged_data = OrderedDict()
+    url_properties = None
+    schema_version = "1.0"
+    description = "LabHub Repository Index"
+
+    # Get the most recent last_update from any index
+    last_update = datetime.now(timezone.utc).isoformat()
+
     with Progress(transient=True) as progress:
         task = progress.add_task("[cyan]Merging indexes...", total=len(IMAGE_TYPES))
         
         for img_type in IMAGE_TYPES:
             progress.update(task, advance=1, description=f"Processing {img_type}")
-            src_filename = f"index.main.{img_type.lower()}.json"
-            dest_filename = src_filename.replace("main", "od")
-            # Save inside ./data/ directory
-            dest_path = os.path.join(dist_dir, dest_filename)
             src_path = os.path.join(
                 BASE_DIR, "addons", img_type.lower(), 
-                INDEX_SUFFIXES[img_type], src_filename
+                INDEX_SUFFIXES[img_type], f"{img_type.lower()}.json"
             )
             
             try:
-                progress.console.print(f"📄 Copying [bold]{img_type}[/] index...")
-                shutil.copyfile(src_path, dest_path)
-                
-                with open(dest_path, "r") as f:
-                    merged_data[img_type] = json.load(f)
+                with open(src_path, "r") as f:
+                    type_data = json.load(f, object_pairs_hook=OrderedDict)
                     
-                progress.console.print(f"🔗 Merged {len(merged_data[img_type])} {img_type} entries")
+                # Capture url_properties from first valid type
+                if url_properties is None:
+                    url_properties = type_data.get('url_properties', {})
+                    
+                # Store the image data under its type key
+                merged_data[img_type] = type_data.get('images', [])
+                
+                progress.console.print(
+                    f"🔗 Added {len(merged_data[img_type])} {img_type} entries "
+                    f"({type_data.get('last_update', 'unknown date')})"
+                )
                 
             except Exception as e:
                 print_error(f"Failed to process {img_type} index: {str(e)}")
                 exit(1)
-    
-    console.print(f"💾 Saving merged index...")
-    # Save the merged data to a single JSON file
-    merged_filename = os.path.join(dist_dir, "index.od.json")
-    with open(merged_filename, "w") as f:
-        json.dump(merged_data, f, indent=4)
-    
-    print_success(f"Merged {sum(len(v) for v in merged_data.values())} total entries")
 
-def post_processing():
-    """Handle additional processing steps with rich output"""
-    print_step("Running post-processing...", "🔁")
+    # Create final unified schema
+    final_schema = OrderedDict([
+        ("schema_version", schema_version),
+        ("description", description),
+        ("last_update", last_update),
+        ("url_properties", url_properties),
+        *[(img_type, merged_data[img_type]) for img_type in IMAGE_TYPES]
+    ])
+
+    # Save the merged data
+    merged_filename = os.path.join(dist_dir, "labhub.json")
+    with open(merged_filename, "w") as f:
+        json.dump(final_schema, f, indent=4, ensure_ascii=False)
     
-    steps = [
-        ("🪞 Generating mirror indexes", "gen_mirrors.py"),
-        ("🔢 Sorting entries", "sort.py")
-    ]
-    
-    for description, script in steps:
-        with console.status(f"[bold]{description}...") as status:
-            try:
-                result = subprocess.run(["python3", script], capture_output=True, text=True)
-                if result.returncode != 0:
-                    console.print(f"[red]Error in {script}:[/]\n{result.stderr}")
-                    exit(1)
-                print_success(f"{description} completed")
-            except Exception as e:
-                print_error(f"Failed to run {script}: {str(e)}")
-                exit(1)
+    print_success(f"Created unified index with:")
+    for img_type in IMAGE_TYPES:
+        console.print(f"  • [bold cyan]{img_type}:[/] {len(merged_data[img_type])} entries")
+    console.print(f"\n💾 Saved to [bold green]{merged_filename}[/]")
+
 
 def cleanup_leftovers():
     """Cleanup index.py scripts and generated json files with progress tracking"""
@@ -299,7 +315,7 @@ def cleanup_leftovers():
             
         json_path = os.path.join(
             BASE_DIR, "addons", img_type.lower(), 
-            INDEX_SUFFIXES[img_type], f"index.main.{img_type.lower()}.json"
+            INDEX_SUFFIXES[img_type], f"{img_type.lower()}.json"
         )
         if os.path.exists(json_path):
             json_files.append(json_path)
@@ -353,9 +369,7 @@ def main():
     results = run_indexing_scripts()
     
     # Process results
-    process_index_files()
-    post_processing()
-    
+    process_index_files()    
 
     # Show summary
     total_images, total_sizes = get_indexed_counts()

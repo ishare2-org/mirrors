@@ -5,16 +5,22 @@ import argparse
 import urllib.parse
 from collections import OrderedDict
 from tqdm import tqdm
+from datetime import datetime, timezone
 
 # Get the absolute path of the current script
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Configuration
 download_path = "/opt/unetlab/addons/dynamips/"
-image_type = os.path.abspath(os.path.join(script_dir)).split('/')[-1]
-hostname = "labhub.eu.org"
-parent_dir = os.path.abspath(os.path.join(script_dir)).split('/')[-1]
-remote_path = f"/api/raw/?path=/addons/{parent_dir}"
+image_type = "dynamips"
+hostnames = {
+    "main": "labhub.eu.org",
+    "drive": "drive.labhub.eu.org"
+}
+prefixes = {
+    "main": "/api/raw/?path=/",
+    "drive": "/0:/"
+}
 
 def sizeof_fmt(num, suffix='B'):
     """Convert bytes to human-readable format"""
@@ -76,14 +82,12 @@ def lookup_hash(image_name, hash_type):
     
     return ""
 
-def generate_file_entry(file_path, filename):
+def generate_file_entry(filename, size):
     """Create detailed file entry with metadata"""
-    size = os.path.getsize(file_path)
+    encoded_filename = url_encode_component(filename)
     return OrderedDict([
         ("filename", filename),
-        ("url", f"https://{url_encode_component(hostname)}"
-                f"{url_encode_component(remote_path)}/"
-                f"{url_encode_component(filename)}"),
+        ("path", f"/addons/dynamips/{encoded_filename}"),
         ("size", size),
         ("human_size", sizeof_fmt(size)),
         ("file_type", "firmware"),
@@ -91,13 +95,12 @@ def generate_file_entry(file_path, filename):
         ("checksum", {
             "md5": lookup_hash(filename, "md5"),
             "sha1": lookup_hash(filename, "sha1")
-            }
-        )
+        })
     ])
 
-def generate_index(directory, truncate=None, verbose=False):
+def generate_dynamips_entries(directory, truncate=None, verbose=False):
     """Generate structured index data for .image files"""
-    index_data = []
+    dynamips_entries = []
     absolute_dir = os.path.join(script_dir, directory)
     
     # Get list of .image files
@@ -105,7 +108,7 @@ def generate_index(directory, truncate=None, verbose=False):
     if not image_files:
         if verbose:
             tqdm.write("No .image files found in directory")
-        return index_data
+        return dynamips_entries
 
     # Set up progress bar
     total_files = len(image_files) if truncate is None else min(truncate, len(image_files))
@@ -131,22 +134,26 @@ def generate_index(directory, truncate=None, verbose=False):
                 tqdm.write(f"\nProcessing file: {filename}")
                 
             try:
-                file_entry = generate_file_entry(file_path, filename)
+                size = os.path.getsize(file_path)
+                file_entry = generate_file_entry(filename, size)
+                
                 main_entry = OrderedDict([
+                    ("id", processed + 1),  # Simple sequential ID
                     ("name", filename),
                     ("type", image_type),
                     ("files", [file_entry]),
                     ("metadata", {
                         "install_path": download_path,
-                        "total_size": file_entry["size"],
-                        "total_human_size": file_entry["human_size"],
+                        "total_size": size,
+                        "total_human_size": sizeof_fmt(size),
                     })
                 ])
-                index_data.append(main_entry)
+                
+                dynamips_entries.append(main_entry)
                 processed += 1
                 
                 if verbose:
-                    tqdm.write(f"Added entry for {filename} ({file_entry['human_readable_size']})")
+                    tqdm.write(f"Added entry for {filename} ({sizeof_fmt(size)})")
                     
                 pbar.update(1)
                 # Add emoji and truncate long filenames
@@ -158,21 +165,38 @@ def generate_index(directory, truncate=None, verbose=False):
                     tqdm.write(f"Error processing {filename}: {str(e)}")
                 continue
 
-    return index_data
+    return dynamips_entries
 
-def save_to_json(index_data, output_file):
-    """Save index data to JSON file with proper formatting"""
+def generate_full_schema(dynamips_entries):
+    """Generate the complete JSON schema with url_properties"""
+    return OrderedDict([
+        ("schema_version", "1.0"),
+        ("description", "DYNAMIPS images index"),
+        ("last_update", datetime.now(timezone.utc).isoformat()),
+        ("url_properties", {
+            "protocol": "https",
+            "hostnames": hostnames,
+            "prefixes": prefixes
+        }),
+        ("images", dynamips_entries)
+    ])
+
+def save_to_json(data, output_file):
+    """Save data to JSON file with proper formatting"""
     with open(output_file, 'w') as json_file:
-        json.dump(index_data, json_file, indent=4)
+        json.dump(data, json_file, indent=4)
 
-def display_summary(index_data):
+def display_summary(data):
     """Print summary statistics"""
-    total_entries = len(index_data)
-    total_size = sum(entry["metadata"]["total_size"] for entry in index_data) if index_data else 0
+    dynamips_entries = data.get("images", [])
+    total_entries = len(dynamips_entries)
+    total_size = sum(entry["metadata"]["total_size"] for entry in dynamips_entries) if dynamips_entries else 0
     
     print("\nIndexing summary:")
-    print(f"Total entries created: {total_entries}")
-    print(f"Total firmware size: {sizeof_fmt(total_size)}")
+    print(f"Total DYNAMIPS entries created: {total_entries}")
+    print(f"Total size: {sizeof_fmt(total_size)}")
+    print(f"Schema version: {data['schema_version']}")
+    print(f"Last update: {data['last_update']}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate DYNAMIPS images index")
@@ -180,14 +204,19 @@ if __name__ == "__main__":
     parser.add_argument("--verbose", action="store_true", help="Enable detailed processing output")
     args = parser.parse_args()
 
-    output_file_path = os.path.join(script_dir, "index.main.dynamips.json")
+    output_file_path = os.path.join(script_dir, "dynamips.json")
     
-    index_data = generate_index(
+    # Generate the entries
+    dynamips_entries = generate_dynamips_entries(
         script_dir,
         truncate=args.truncate,
         verbose=args.verbose
     )
     
-    save_to_json(index_data, output_file_path)
-    display_summary(index_data)
+    # Create the full schema
+    full_schema = generate_full_schema(dynamips_entries)
+    
+    # Save and display results
+    save_to_json(full_schema, output_file_path)
+    display_summary(full_schema)
     print(f"\nOutput file created at: {output_file_path}")

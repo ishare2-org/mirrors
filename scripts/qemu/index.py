@@ -5,6 +5,7 @@ import argparse
 import urllib.parse
 from collections import OrderedDict
 from tqdm import tqdm
+from datetime import datetime, timezone
 
 # Get absolute path of current script file
 script_directory = os.path.dirname(os.path.abspath(__file__))
@@ -122,7 +123,7 @@ def create_file_object(file_path, relative_dir, verbose=False):
     
     return OrderedDict([
         ("filename", filename),
-        ("url", f"https://{encoded_host}{encoded_api_path}/{encoded_relative_dir}/{encoded_filename}"),
+        ("path", f"/addons/qemu/{encoded_relative_dir}/{encoded_filename}"),
         ("size", file_size),
         ("human_size", convert_size_human_readable(file_size)),
         ("file_type", get_file_type(file_format)),
@@ -188,6 +189,39 @@ def process_single_file_entry(file_path, verbose=False):
             "total_size": file_obj['size'],
             "total_human_size": file_obj['human_size'],
         })
+    ])
+
+def generate_full_schema(index_data):
+    """Wrap the existing data in the new schema format with sorted entries and IDs"""
+    # Sort entries case-insensitively by name
+    sorted_entries = sorted(index_data, key=lambda x: x['name'].lower())
+    
+    # Add sequential IDs while preserving OrderedDict structure
+    ordered_entries = []
+    for idx, entry in enumerate(sorted_entries, start=1):
+        # Create new OrderedDict with ID as first key
+        new_entry = OrderedDict()
+        new_entry['id'] = idx
+        for key in entry:
+            new_entry[key] = entry[key]
+        ordered_entries.append(new_entry)
+    
+    return OrderedDict([
+        ("schema_version", "1.0"),
+        ("description", "QEMU images index"),
+        ("last_update", datetime.now(timezone.utc).isoformat()),
+        ("url_properties", {
+            "protocol": "https",
+            "hostnames": {
+                "main": "labhub.eu.org",
+                "drive": "drive.labhub.eu.org"
+            },
+            "prefixes": {
+                "main": "/api/raw/?path=/",
+                "drive": "/0:/"
+            }
+        }),
+        ("images", ordered_entries)
     ])
 
 def generate_directory_index(start_path, truncate=None, verbose=False):
@@ -261,20 +295,26 @@ def display_index_summary(index_data):
         count = sum(1 for e in index_data if any(file["extension"] == fmt for file in e["files"]))
         print(f"{fmt} files/directories: {count}")
 
+# Modified main execution block
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate QEMU images index")
     parser.add_argument("--truncate", type=int, help="Stop after generating specified number of entries")
     parser.add_argument("--verbose", action="store_true", help="Enable detailed logging")
     args = parser.parse_args()
 
-    output_json_path = os.path.join(script_directory, "index.main.qemu.json")
+    output_json_path = os.path.join(script_directory, "qemu.json")
     
+    # Existing processing logic remains untouched
     index_data = generate_directory_index(
         script_directory,
         truncate=args.truncate,
         verbose=args.verbose
     )
     
-    write_json_output(index_data, output_json_path)
+    # Wrap in new schema format
+    full_schema = generate_full_schema(index_data)
+    
+    # Save and display results
+    write_json_output(full_schema, output_json_path)
     display_index_summary(index_data)
     print(f"\nOutput file: {output_json_path}")
