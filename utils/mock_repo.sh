@@ -18,13 +18,13 @@ dest_dir=""
 # Parse command-line options
 while getopts "s:d:h" opt; do
   case "$opt" in
-    s) source_dir="$OPTARG" ;;
-    d) dest_dir="$OPTARG" ;;
-    h) usage ;;
-    *) usage ;;
+  s) source_dir="$OPTARG" ;;
+  d) dest_dir="$OPTARG" ;;
+  h) usage ;;
+  *) usage ;;
   esac
 done
-shift $((OPTIND -1))
+shift $((OPTIND - 1))
 
 # Check if required options are provided
 if [ -z "$source_dir" ] || [ -z "$dest_dir" ]; then
@@ -77,7 +77,7 @@ copy_structure() {
     fi
     echo "Creating file: $dest_file"
     # Try creating the file with a different method
-    > "$dest_file" # Use output redirection to create an empty file
+    >"$dest_file" # Use output redirection to create an empty file
     touch_result=$?
     if [ $touch_result -ne 0 ]; then
       echo "Error: Failed to create mock file: $dest_file.  Output redirection exit code: $touch_result"
