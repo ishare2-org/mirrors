@@ -217,8 +217,8 @@ def generate_full_schema(index_data):
                 "drive": "drive.labhub.eu.org"
             },
             "prefixes": {
-                "main": "/api/raw/?path=/",
-                "drive": "/0:/"
+                "main": "/api/raw/?path=",
+                "drive": "/0:"
             }
         }),
         ("images", ordered_entries)

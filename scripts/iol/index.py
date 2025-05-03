@@ -18,8 +18,8 @@ hostnames = {
     "drive": "drive.labhub.eu.org"
 }
 prefixes = {
-    "main": "/api/raw/?path=/",
-    "drive": "/0:/"
+    "main": "/api/raw/?path=",
+    "drive": "/0:"
 }
 
 def sizeof_fmt(num, suffix='B'):
