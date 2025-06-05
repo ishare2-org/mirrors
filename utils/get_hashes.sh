@@ -33,7 +33,7 @@ OUTPUT_DIR="../data/labhub_hashes"
 
 # Print usage information
 usage() {
-    echo -e "${BOLD}Usage:${NC} $0 [-v] <remote_name>"
+    echo -e "${BOLD}Usage:${NC} $0 [-v] <rclone_remote_name>"
     echo -e "  -v  Enable verbose output"
     exit 1
 }
