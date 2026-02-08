@@ -214,11 +214,13 @@ def generate_full_schema(index_data):
             "protocol": "https",
             "hostnames": {
                 "main": "labhub.eu.org",
-                "drive": "drive.labhub.eu.org"
+                "drive": "drive.labhub.eu.org",
+                "legacy": "legacy.labhub.eu.org"
             },
             "prefixes": {
                 "main": "/api/raw/?path=",
-                "drive": "/0:"
+                "drive": "/0:",
+                "legacy": "/0:"
             }
         }),
         ("images", ordered_entries)

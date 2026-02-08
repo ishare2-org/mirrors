@@ -15,11 +15,13 @@ download_path = "/opt/unetlab/addons/dynamips/"
 image_type = "dynamips"
 hostnames = {
     "main": "labhub.eu.org",
-    "drive": "drive.labhub.eu.org"
+    "drive": "drive.labhub.eu.org",
+    "legacy": "legacy.labhub.eu.org"
 }
 prefixes = {
     "main": "/api/raw/?path=",
-    "drive": "/0:"
+    "drive": "/0:",
+    "legacy": "/0:"
 }
 
 def sizeof_fmt(num, suffix='B'):
