@@ -15,7 +15,7 @@ download_path = "/opt/unetlab/addons/dynamips/"
 image_type = "dynamips"
 hostnames = {
     "main": "labhub.eu.org",
-    "drive": "drive.labhub.eu.org"
+    "drive": "legacy.labhub.eu.org"
 }
 prefixes = {
     "main": "/api/raw/?path=",

@@ -15,7 +15,7 @@ download_path = "/opt/unetlab/addons/iol/bin/"
 image_type = "iol"  # Hardcoded for IOL
 hostnames = {
     "main": "labhub.eu.org",
-    "drive": "drive.labhub.eu.org"
+    "drive": "legacy.labhub.eu.org"
 }
 prefixes = {
     "main": "/api/raw/?path=",

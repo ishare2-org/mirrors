@@ -214,7 +214,7 @@ def generate_full_schema(index_data):
             "protocol": "https",
             "hostnames": {
                 "main": "labhub.eu.org",
-                "drive": "drive.labhub.eu.org"
+                "drive": "legacy.labhub.eu.org"
             },
             "prefixes": {
                 "main": "/api/raw/?path=",
